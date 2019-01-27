@@ -1,0 +1,840 @@
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="./css/beisChayim.css">
+<link rel="stylesheet" href="./css/sideBar.css">
+<link rel="stylesheet" href="./css/config.css">
+<link rel="stylesheet" href="./css/panel.css">
+<link rel="stylesheet" href="./css/editWindow.css">
+<link rel="stylesheet" href="./css/newWindow.css">
+<link rel="stylesheet" href="./css/selectWindow.css">
+
+<title>Beis Chayim</title>
+
+</head>
+<body  id=appBody onload="firstLoad();">
+<!-- <div id="pdfView" height="100%" width="100%"><img id="pdfImg" src="" onclick="turnBack();"></div> -->
+<div id="pdfView" height="100%" width="100%"><img id="pdfImg" src=""></div>
+
+<div id=body class=bg0>
+<div id=keyShow></div>
+<div id=security>
+								<table id=kboard>
+									<tr><td class=kb onclick="kbclick('1');">1</td><td class=kb onclick="kbclick('2');">2</td><td class=kb onclick="kbclick('3');">3</td></tr>
+									<tr><link rel="stylesheet" href="./css/panel.css"><td class=kb onclick="kbclick('4');">4</td><td class=kb onclick="kbclick('5');">5</td><td class=kb onclick="kbclick('6');">6</td></tr>
+									<tr><td class=kb onclick="kbclick('8');">7</td><td class=kb onclick="kbclick('8');">8</td><td class=kb onclick="kbclick('9');">9</td></tr>
+									<tr><td class=kb onclick="kbclick('clear');"><=</td><td class=kb onclick="kbclick('0');">0</td><td class=kb onclick="kbclick('Enter');">Enter</td></tr>
+								</table>
+</div>
+<div id=spanTitle><h1 id=sTitle onclick="showSecurity();" _onclick="doSelect();">Beis Chayim</h1></span>
+<table id=accessMenu>
+	<tr><td>
+</td>
+<td>
+<select id=actionSelect onchange="doAction();">
+	<option value="nothing"></option>
+	<option value="new">New</option>
+	<option value="edit">Edit</option>
+	<option value="select">Select</option>
+	<option value="config">Config</option>
+</select>
+</td>
+</tr>
+</table>
+<div id="wholeThing">
+	<div id=Name></div>
+	<div id=HName></div>
+	<div id=EDate></div>
+	<div id=HDate></div>
+	<div id=DPic01><img id=Pic01 src="./img/soldiers00x1.jpeg" alt=""></div>
+	<div id=DPic02><img id=Pic02 src="./img/elderly00x1.jpeg" alt=""></div>
+	<div id=Comments01></div>
+	<!-- <div id=fbook><img id=gotofbook onclick="gotoFBook();" src="./img/facebook2.png" alt=""></div> -->
+	<div id=sbar01></div>
+	<div id=sbar02></div>
+	<div id=sbar03></div>
+	<div id=sbar04></div>
+	<div id=sbar05></div>
+	<div id=sbar06></div>
+	<div id=sbar07></div>
+	<div id=sbar08></div>
+	<div id=sbar09></div>
+	<div id=sbar010></div>
+	<div id=sbar011></div>
+	<div id=sbar012></div>
+	<div id=sbar013></div>
+	<div id=sbar014></div>
+	<div id=sbar015></div>
+	<div id=sbar016></div>
+
+<!-- <div id=test onclick="check();">click here</div> -->
+
+</div>
+<script src="config/RunPhase"></script>
+<script src="config/BCConfig"></script>
+<script src="config/ScreenConfig"></script>
+<script src="config/PanelConfig"></script>
+
+<script src="js/config.js"></script>
+<script src="js/screenSet.js"></script>
+<script src="js/db01.js"></script>
+<script src="js/Control.js"></script>
+<script src="js/Circle.js"></script>
+<script src="js/sideBar.js"></script>
+<script src="js/dtConversion.js"></script>
+<script src="js/param.js"></script>
+
+<script src="js/buildPanel.js"></script>
+
+
+<script>
+hideIt();
+hideSecurity();
+var sTitle = document.getElementById("sTitle");
+sTitle.innerHTML = SCREEN_TITLE;
+
+function initKeys(){
+	passkey = "";
+	pkLetterCount = 0;
+}
+
+function checkIt(){
+	//console.log("checkIt: " + passkey);
+		if(passkey == PASSWORD){
+			showIt();
+			passkey = "";
+			pkLetterCount = 0;
+		} else {
+			hideIt();
+		}
+}
+
+function doAction(){
+	saveAutoTime();
+	var action = document.getElementById("actionSelect");
+	if(action.value == "new") doNew();
+	if(action.value == "edit") doEdit();
+	if(action.value == "select") doSelect();
+	if(action.value == "config") startConfig();
+
+	action.value = "";
+
+	//action.style.display = 'none';
+}
+
+function startNew(){
+	window.open("NewPerson.html",'_blank','toolbar=no,location=no,status=no,menubar=no,width=750px,height=750px');
+	hideIt();
+}
+
+function startSelect(){
+	window.open("Select.html",'_blank','scrollbars=1,toolbar=no,location=no,status=no,menubar=no,width=750px,height=750px');
+	hideIt();
+}
+
+//note: currentName is actually the index
+//function startEdit(){
+	//var params = buildParamString(YahrList, currentName);
+	//window.open("EditPerson.html?" + params, '_blank','toolbar=0,location=0,status=0,menubar=0,scrollbars=0,resizable=0,directories=0, width=750px,height=750px');
+	//hideIt();
+//}
+
+function startConfig(){
+	window.open("EditConfig.html", '_blank','toolbar=no,location=no,status=no,menubar=no,width=750px,height=750px');
+	SCREEN_UP = true;
+
+	hideIt();
+}
+
+var pkLetterCount = 0;
+var passkey = "";
+
+function kbclick(ky){
+	if(RunPhaseView()){
+		return;
+	}
+	saveAutoTime();
+	ks = document.getElementById("keyShow");
+	ks.style.display = 'inline';
+	if (ky == 'Enter'){
+		checkIt();
+		passkey = "";
+		pkLetterCount = 0;
+		ks.innerHTML = "";
+		ks.style.display = "hidden";
+		return;
+	}
+	if (ky == 'clear'){
+		pkLetterCount--;
+		passkey = passkey.substring(0,pkLetterCount);
+	} else {
+		pkLetterCount++;
+		passkey += ky;
+	}
+	ks.innerHTML = passkey;
+}
+
+</script>
+<!-- panel starts here -->
+	<div id=pbarA01></div>
+	<div id=pbarA02></div>
+	<div id=pbarA03></div>
+	<div id=pbarA04></div>
+	<div id=pbarA05></div>
+	<div id=pbarA06></div>
+	<div id=pbarA07></div>
+	<div id=pbarA08></div>
+	<div id=pbarA09></div>
+	<div id=pbarA10></div>
+	<div id=pbarA11></div>
+	<div id=pbarA12></div>
+
+	<div id=pbarB01></div>
+	<div id=pbarB02></div>
+	<div id=pbarB03></div>
+	<div id=pbarB04></div>
+	<div id=pbarB05></div>
+	<div id=pbarB06></div>
+	<div id=pbarB07></div>
+	<div id=pbarB08></div>
+	<div id=pbarB09></div>
+	<div id=pbarB10></div>
+	<div id=pbarB11></div>
+	<div id=pbarB12></div>
+
+	<div id=pbarC01></div>
+	<div id=pbarC02></div>
+	<div id=pbarC03></div>
+	<div id=pbarC04></div>
+	<div id=pbarC05></div>
+	<div id=pbarC06></div>
+	<div id=pbarC07></div>
+	<div id=pbarC08></div>
+	<div id=pbarC09></div>
+	<div id=pbarC10></div>
+	<div id=pbarC11></div>
+	<div id=pbarC12></div>
+
+	<div id=pbarD01></div>
+	<div id=pbarD02></div>
+	<div id=pbarD03></div>
+	<div id=pbarD04></div>
+	<div id=pbarD05></div>
+	<div id=pbarD06></div>
+	<div id=pbarD07></div>
+	<div id=pbarD08></div>
+	<div id=pbarD09></div>
+	<div id=pbarD10></div>
+	<div id=pbarD11></div>
+	<div id=pbarD12></div>
+
+	<div id=pbarE01></div>
+	<div id=pbarE02></div>
+	<div id=pbarE03></div>
+	<div id=pbarE04></div>
+	<div id=pbarE05></div>
+	<div id=pbarE06></div>
+	<div id=pbarE07></div>
+	<div id=pbarE08></div>
+	<div id=pbarE09></div>
+	<div id=pbarE10></div>
+	<div id=pbarE11></div>
+	<div id=pbarE12></div>
+
+	<div id=pbarF01></div>
+	<div id=pbarF02></div>
+	<div id=pbarF03></div>
+	<div id=pbarF04></div>
+	<div id=pbarF05></div>
+	<div id=pbarF06></div>
+	<div id=pbarF07></div>
+	<div id=pbarF08></div>
+	<div id=pbarF09></div>
+	<div id=pbarF10></div>
+	<div id=pbarF11></div>
+	<div id=pbarF12></div>
+
+	<div id=pbarG01></div>
+	<div id=pbarG02></div>
+	<div id=pbarG03></div>
+	<div id=pbarG04></div>
+	<div id=pbarG05></div>
+	<div id=pbarG06></div>
+	<div id=pbarG07></div>
+	<div id=pbarG08></div>
+	<div id=pbarG09></div>
+	<div id=pbarG10></div>
+	<div id=pbarG11></div>
+	<div id=pbarG12></div>
+
+	<div id=pbarH01></div>
+	<div id=pbarH02></div>
+	<div id=pbarH03></div>
+	<div id=pbarH04></div>
+	<div id=pbarH05></div>
+	<div id=pbarH06></div>
+	<div id=pbarH07></div>
+	<div id=pbarH08></div>
+	<div id=pbarH09></div>
+	<div id=pbarH10></div>
+	<div id=pbarH11></div>
+	<div id=pbarH12></div>
+
+<!-- panel ends here -->
+</div>
+<!-- edit panel begins here -->
+<div id=editPanel>
+<div id=ID></div>
+<table id=editTable>
+<tr>
+		<td></td>
+		<td></td>
+		<td></td>
+
+		<td><button onclick=goBack('editPanel');>Return</span></td>
+</tr>
+<tr>
+				<td>Name</td><td><input type=text id=editName></td>
+				<td></td><td></td>
+</tr>
+<tr>
+				<td>Hebrew Name</td><td><input type=text id=editHName></td>
+				<td>PDF #1</td><td><span class=fname id=editPDF01 ></span><input id="editPDFFilename01" type="file" onblur="keepFileName(3);"/></td>
+</tr>
+<tr>
+				<td>Gregorian Date</td><td><input type=text id=editEDate></td>
+				<td>PDF #2</td><td><span class=fname id=editPDF02 ></span><input id="editPDFFilename02" type="file" onblur="keepFileName(4);"/></td>
+</tr>
+<tr>
+				<!-- <td>Relationship</td><td><input type=text id=editRelationship></td> -->
+				<td>Hebrew Date</td><td><input type=text id=editHDate></td>
+				<td>PDF #3</td><td><span class=fname id=editPDF03></span><input id="editPDFFilename03" type="file" onblur="keepFileName(5);"/></td>
+<tr>
+				<td>Picture #1</td><td><span class=fname id=editPic01 ></span><input id="editFilename1" type="file" onblur="keepFileName(1);"/></td>
+				<td>PDF #4</td><td><span class=fname id=editPDF04 ></span><input id="editPDFFilename04" type="file" onblur="keepFileName(6);"/></td>
+</tr>
+<tr>
+        <td>Picture #2</td><td><span class=fname id=editPic02></span><input id="editFilename2" type="file" onblur="keepFileName(2);"/></td>
+				<td>PDF #5</td><td><span class=fname id=editPDF05 ></span><input id="editPDFFilename05" type="file" onblur="keepFileName(7);"/></td>
+</tr>
+<tr>
+  			<td>Mourned by</td><td><input type=text id=editMournby></td>
+</tr>
+<tr>
+  			<td>Relationship</td><td><input type=text id=editRelationship></td>
+				<td></td>
+				<td></td>
+</tr>
+<tr>
+  <td>Pay Level</td><td><select id=editPaylevel onchange="setPayLevel();">
+																											<option value="0">none</option>
+																											<option value="1">copper</option>
+																											<option value="2">bronze</option>
+																											<option value="3">silver</option>
+																											<option value="4">gold</option>
+																										</select>
+	</td>
+	<td></td>
+	<td></td>
+
+</tr>
+<tr>
+        <td>Comments</td><td><textarea rows=5 cols=45 id=editComments01></textarea></td>
+				<td></td>
+				<td></td>
+
+</tr>
+<tr>
+	<td>	</td><td><button id=submit onclick=editAddStuff();>Submit</button></td>
+	<td></td>
+	<td></td>
+
+</tr>
+</table>
+
+<!-- ----------------------------------------------
+<div id=editPanel>
+<div id=ID></div>
+<table id=editTable>
+	<tr>
+		<td>Name</td><td><input type=text id=editName></td><td><button onclick=goBack('editPanel');>Click to return</span></td>
+	</tr>
+	<tr>
+		<td>Hebrew Name</td><td><input type=text id=editHName></td>
+	</tr>
+		<tr>
+			<td>English Date</td><td><input type=text id=editEDate></td>
+		</tr>
+		<tr>
+			<td>Hebrew Date</td><td><input type=text id=editHDate></td>
+		</tr>
+		<tr>
+				<td>Picture #1</td><td><span class=fname id=editPic01 ></span><input id="editFilename1" type="file" onblur="keepFileName(1);"/></td>
+		</tr>
+		<tr>
+		    <td>Picture #2</td><td><span class=fname id=editPic02></span><input id="editFilename2" type="file" onblur="keepFileName(2);"/></td>
+		</tr>
+		<tr>
+		  <td>Mourned by</td><td><input type=text id=editMournby></td>
+		</tr>
+		<tr>
+		  <td>Relationship</td><td><input type=text id=editRelationship></td>
+		</tr>
+		<tr>
+		  <td>Pay Level</td><td><select id=editPaylevel onchange="setPayLevel();">
+																													<option value="0">none</option>
+																													<option value="1">copper</option>
+																													<option value="2">bronze</option>
+																													<option value="3">silver</option>
+																													<option value="4">gold</option>
+																												</select>
+			</td>
+		</tr>
+
+		<tr>
+		    <td>Comments</td><td><textarea rows=5 cols=75 id=editComments01></textarea></td>
+		</tr>
+		<tr>
+			<td></td><td><button id=submit onclick=editAddStuff();>Submit</button></td>
+		</tr>
+		</table>
+</table>
+----------------------- -->
+	<script>
+	function setPayLevel(){
+
+	}
+
+	function goBack(oldPanel){
+		resetScreen(oldPanel);
+		addBodyListener();
+	}
+
+	function resetScreen(oldPanel){
+		screen01 = document.getElementById("body");
+		oldPanel = document.getElementById(oldPanel);
+		SCREEN_UP = false;
+
+		screen01.style.display = "block";
+		oldPanel.style.display = "none";
+	}
+
+	function editAddStuff(){
+			//alert(YahrList.Yahrzeits[currentIDX].Name);
+			//alert("B" + document.getElementById("editFilename1").value);
+			addStuff(document.getElementById("ID").innerHTML, 1, resetScreen);
+	}
+
+	function doEdit(id){
+			//var params = buildParamString(YahrList, currentName);
+			if(id !== undefined) currentIDX = id;
+			//console.log(YahrList.Yahrzeits[currentIDX].Name);
+			var params = buildParamString(YahrList, currentIDX);
+			screen01 = document.getElementById("body");
+			editPanel = document.getElementById("editPanel");
+			editPanel.style.zIndex = 20;
+			editPanel.style.display = "block";
+			editPanel.className = "editPanel";
+
+			var queryDict = {}
+			params.substr(1).split("&").forEach(function(item) {
+			    queryDict[item.split("=")[0]] = item.split("=")[1]
+			})
+			//console.log(queryDict);
+			SCREEN_UP = true;
+
+			hideIt();
+			loadEdit(queryDict);
+	}
+
+	function loadEdit(queryDict){
+			var ID = queryDict["ID"];
+			removeBodyListener();
+			autoProcess = false;
+
+			document.getElementById("ID").innerHTML = ID;
+
+			document.getElementById("editName").value = queryDict["Name"].replace(/%20/g," ");
+			document.getElementById("editHName").value = queryDict["HName"].replace(/%20/g," ");
+			document.getElementById("editEDate").value = queryDict["EDate"].replace(/%20/g," ");
+			document.getElementById("editHDate").value = queryDict["HDate"].replace(/%20/g," ");
+
+			document.getElementById("editPic01").innerHTML = queryDict["Pic01"].replace(/%20/g," ");
+			document.getElementById("editPic02").innerHTML = queryDict["Pic02"].replace(/%20/g," ");
+
+			document.getElementById("editPDF01").innerHTML = queryDict["PDF01"].replace(/%20/g," ");
+			document.getElementById("editPDF02").innerHTML = queryDict["PDF02"].replace(/%20/g," ");
+			document.getElementById("editPDF03").innerHTML = queryDict["PDF03"].replace(/%20/g," ");
+			document.getElementById("editPDF04").innerHTML = queryDict["PDF04"].replace(/%20/g," ");
+			document.getElementById("editPDF05").innerHTML = queryDict["PDF05"].replace(/%20/g," ");
+
+			document.getElementById("editMournby").value = queryDict["MournBy"].replace(/%20/g," ");
+			document.getElementById("editRelationship").value = queryDict["Relationship"].replace(/%20/g," ");
+			document.getElementById("editComments01").value = queryDict["Comments01"].replace(/%20/g," ");
+			document.getElementById("editPaylevel").value = queryDict["PayLevel"].replace(/%20/g," ");
+	}
+	</script>
+	<script src="js/download.js"></script>
+</div>
+<!-- edit panel ends here -->
+<!-- new panel begins here -->
+<div id=newPanel>
+<table id=newTable>
+<tr>
+		<td></td>
+		<td></td>
+		<td></td>
+
+		<td><button onclick=goBack('newPanel');>Return</span></td>
+</tr>
+<tr>
+				<td>Name</td><td><input type=text id=newName></td>
+				<td></td><td></td>
+</tr>
+<tr>
+				<td>Hebrew Name</td><td><input type=text id=newHName></td>
+				<td>PDF #1</td><td><span class=fname id=newPDF01 ></span><input id="newPDFFilename01" type="file" onblur="keepFileName(10);"/></td>
+</tr>
+<tr>
+				<td>Gregorian Date</td><td><input type=text id=newEDate></td>
+				<td>PDF #2</td><td><span class=fname id=newPDF02 ></span><input id="newPDFFilename02" type="file" onblur="keepFileName(11);"/></td>
+</tr>
+<tr>
+				<!-- <td>Relationship</td><td><input type=text id=editRelationship></td> -->
+				<td>Hebrew Date</td><td><input type=text id=newHDate></td>
+				<td>PDF #3</td><td><span class=fname id=newPDF03></span><input id="newPDFFilename03" type="file" onblur="keepFileName(12);"/></td>
+<tr>
+				<td>Picture #1</td><td><span class=fname id=newPic01 ></span><input id="newFilename1" type="file" onblur="keepFileName(8);"/></td>
+				<td>PDF #4</td><td><span class=fname id=newPDF04 ></span><input id="newPDFFilename04" type="file" onblur="keepFileName(13);"/></td>
+</tr>
+<tr>
+        <td>Picture #2</td><td><span class=fname id=newPic02></span><input id="newFilename2" type="file" onblur="keepFileName(9);"/></td>
+				<td>PDF #5</td><td><span class=fname id=newPDF05 ></span><input id="newPDFFilename05" type="file" onblur="keepFileName(14);"/></td>
+</tr>
+<tr>
+  			<td>Mourned by</td><td><input type=text id=newMournby></td>
+</tr>
+<tr>
+  			<td>Relationship</td><td><input type=text id=newRelationship></td>
+				<td></td>
+				<td></td>
+</tr>
+<tr>
+  <td>Pay Level</td><td><select id=newPaylevel onchange="setPayLevel();">
+																											<option value="0">none</option>
+																											<option value="1">copper</option>
+																											<option value="2">bronze</option>
+																											<option value="3">silver</option>
+																											<option value="4">gold</option>
+																										</select>
+	</td>
+	<td></td>
+	<td></td>
+
+</tr>
+<tr>
+        <td>Comments</td><td><textarea rows=5 cols=45 id=newComments01></textarea></td>
+				<td></td>
+				<td></td>
+
+</tr>
+<tr>
+	<td>	</td><td><button id=submit onclick=newAddStuff();>Submit</button></td>
+	<td></td>
+	<td></td>
+
+</tr>
+</table>
+<script>
+
+function resetScreenFromNew(){
+	screen01 = document.getElementById("body");
+	newPanel = document.getElementById("newPanel");
+	screen01.style.display = "block";
+	newPanel.style.display = "none";
+}
+
+function newAddStuff(){
+		addStuff(0, 0, resetScreenFromNew);
+}
+
+function doNew(){
+		//var params = buildParamString(YahrList, currentName);
+		//screen01 = document.getElementById("body");
+		newPanel = document.getElementById("newPanel");
+		//screen01.style.display = "none";
+		newPanel.style.zIndex = 20;
+		newPanel.style.display = "inline";
+		newPanel.className = "newPanel";
+		hideIt();
+		SCREEN_UP = true;
+
+		loadNew();
+}
+
+function loadNew(){
+		removeBodyListener();
+		autoProcess = false;
+		document.getElementById("ID").innerHTML = "";
+		document.getElementById("newName").value = "";
+		document.getElementById("newHName").value = "";
+		document.getElementById("newEDate").value = "";
+		document.getElementById("newHDate").value = "";
+		document.getElementById("newFilename1").value = "";
+		document.getElementById("newFilename2").value = "";
+		document.getElementById("newPDFFilename01").value = "";
+		document.getElementById("newPDFFilename02").value = "";
+		document.getElementById("newPDFFilename03").value = "";
+		document.getElementById("newPDFFilename04").value = "";
+		document.getElementById("newPDFFilename05").value = "";
+		document.getElementById("newMournby").value = "";
+		document.getElementById("newRelationship").value = "";
+		document.getElementById("newComments01").value = "";
+		document.getElementById("newPaylevel").value = "";
+}
+</script>
+
+</div>
+<!-- new panel ends here -->
+
+<!-- select panel beginse here -->
+
+<div id=selectPanel>
+	<div id=searchBar>&nbsp;</div>
+<table>
+	<tr>
+			<td><span><button onclick=reset();>Reset</span></td>
+			<td><span><button onclick=navUp(searchString);>Up</span></td>
+			<td><span><button onclick=navDown(searchString);>Down</span></td>
+			<td><span><button onclick=goBack('selectPanel');>Return</span></td>
+			<td>&nbsp;</td><td>&nbsp;</td>
+			<td><span id=searchStrOut>Search</span></td>
+	</tr>
+</table>
+<hr>
+<table>
+	<tr>
+		<td class=ltr onclick="scrollto('a');">a</td>
+		<td class=ltr onclick="scrollto('b');">b</td>
+		<td class=ltr onclick="scrollto('c');">c</td>
+		<td class=ltr onclick="scrollto('d');">d</td>
+		<td class=ltr onclick="scrollto('e');">e</td>
+		<td class=ltr onclick="scrollto('f');">f</td>
+		<td class=ltr onclick="scrollto('g');">g</td>
+		<td class=ltr onclick="scrollto('h');">h</td>
+		<td class=ltr onclick="scrollto('i');">i</td>
+		<td class=ltr onclick="scrollto('j');">j</td>
+		<td class=ltr onclick="scrollto('k');">k</td>
+		<td class=ltr onclick="scrollto('l');">l</td>
+		<td class=ltr onclick="scrollto('m');">m</td>
+	</tr>
+	<tr>
+		<td class=ltr onclick="scrollto('n');">n</td>
+		<td class=ltr onclick="scrollto('o');">o</td>
+		<td class=ltr onclick="scrollto('p');">p</td>
+		<td class=ltr onclick="scrollto('q');">q</td>
+		<td class=ltr onclick="scrollto('r');">r</td>
+		<td class=ltr onclick="scrollto('s');">s</td>
+		<td class=ltr onclick="scrollto('t');">t</td>
+		<td class=ltr onclick="scrollto('u');">u</td>
+		<td class=ltr onclick="scrollto('v');">v</td>
+		<td class=ltr onclick="scrollto('w');">w</td>
+		<td class=ltr onclick="scrollto('x');">x</td>
+		<td class=ltr onclick="scrollto('y');">y</td>
+		<td class=ltr onclick="scrollto('z');">z</td>
+		<!-- <td class=ltr onclick="reset();">reset</td> -->
+	</tr>
+</table>
+
+<div style="overflow-x:auto;">
+<table id=tbl>
+	<tbody>
+	</tbody>
+</table>
+</div>
+<script>
+var searchString = '';
+var currentIDX;
+//YahrList.Yahrzeits.reverse();
+function doSelect(){
+		//var params = buildParamString(YahrList, currentName);
+		//screen01 = document.getElementById("body");
+		selectPanel = document.getElementById("selectPanel");
+		var sbar = document.getElementById("searchBar");
+		//screen01.style.display = "none";
+		selectPanel.style.display = "block";
+		selectPanel.className = "selectPanel";
+		selectPanel.style.zIndex = 20;
+		reset();
+		hideIt();
+		SCREEN_UP = true;
+}
+
+function reset(){
+	var searchStrOut = document.getElementById("searchStrOut");
+	searchString = '';
+	searchStrOut.innerHTML = searchString;
+	cleanUpTable();
+}
+
+function scrollto(let){
+			saveAutoTime();
+			var searchStrOut = document.getElementById("searchStrOut");
+			var sbar = document.getElementById("searchBar");
+			_lastI = 0;
+			searchString += let;
+			searchStrOut.innerHTML = searchString;
+			cleanUpTable();
+			showNames(searchString);
+			//if(searchString.length > 3) searchString = '';
+}
+
+function cleanUpTable(){
+	var tbl = document.getElementById("tbl");
+	for (var i=tbl.rows.length-1; i > -1; i--){
+		tbl.deleteRow(i);
+	}
+}
+
+var topWindow = 0;
+var _lastI = 0;
+
+function navUp(name){
+	saveAutoTime();
+	//console.log("navUp: " + _lastI);
+	var ps = 2 * PAGE_SIZE;
+	_lastI-=ps;
+	if(_lastI < 0) _lastI = 0;
+	//console.log("navUp: (" + name + ")" + _lastI);
+	showNames(name);
+	//alert("Up");
+}
+
+function navDown(name){
+	saveAutoTime();
+	//console.log("navDown: " + _lastI);
+	//_lastI+=PAGE_SIZE;
+	if(_lastI < 0) _lastI = 0;
+	//console.log("navDown: (" + name + ")" + _lastI);
+	showNames(name);
+	//alert("Down");
+}
+
+function clearTable(tbl){
+		//console.log("clearTable: " + _lastI);
+		var rCount = tbl.rows.length;
+		for (i=0; i < rCount; i++){
+			tbl.deleteRow(0);
+		}
+}
+
+function showNames(name){
+	//console.log("showNames: " + _lastI);
+	var rowCount = 0;
+	var tbl = document.getElementById("tbl");
+	clearTable(tbl);
+	var rowFlip = true;
+	for (var i=0; i < YahrList.Yahrzeits.length; i++){
+			if((YahrList.Yahrzeits[i].Name.trim().toLowerCase().indexOf(name.trim().toLowerCase()) == 0) ||
+					(YahrList.Yahrzeits[i].Name.trim().toLowerCase().substring(YahrList.Yahrzeits[i].Name.trim().indexOf(' ') + 1).indexOf(name.trim().toLowerCase()) == 0)){
+				if(i < _lastI) continue;
+				if(rowCount >= PAGE_SIZE) continue;
+							var row = tbl.insertRow(0);
+							if(rowFlip){
+								row.className = "rowColor00";
+							} else {
+								row.className = "rowColor01";
+							}
+							rowFlip = !rowFlip;
+
+							var nm = '';
+							if(YahrList.Yahrzeits[i].Name.trim() !== ''){
+								nm = YahrList.Yahrzeits[i].Name;
+								if(YahrList.Yahrzeits[i].HName.trim() !== ''){
+									nm += " { " + YahrList.Yahrzeits[i].HName + " } ";
+								}
+							} else {
+								if(YahrList.Yahrzeits[i].HName.trim() !== ''){
+									nm = YahrList.Yahrzeits[i].HName;
+								}
+							}
+							var cell1 = row.insertCell(0);
+							cell1.innerHTML = "<span onclick='choose(" + i + ")'>" + nm + "</span>";
+							cell1.className = "cell";
+							_lastI = i;
+							//console.log("Updated _lastI: " + _lastI);
+							rowCount++;
+				}
+			}
+		}
+
+function clickEdit(){
+	doEdit();
+	// var params = buildParamString(YahrList, currentIDX);
+	// window.open("EditPerson.html?" + params, '_blank','toolbar=no,location=no,status=no,menubar=no,width=750px,height=750px');
+	//
+	var choice = document.getElementById("choice");
+	choice.style.display = "none";
+	selectPanel = document.getElementById("selectPanel");
+	selectPanel.style.display = "none";
+
+}
+
+function choose(id){
+	//var choice = document.getElementById("choice");
+	//choice.style.display = "inline";
+	//console.log(YahrList.Yahrzeits[id].Name);
+	//var editChoice = document.getElementById("editChoice");
+	currentIDX = id;
+	//var choice = document.getElementById("choice");
+	//choice.style.display = "none";
+	selectPanel = document.getElementById("selectPanel");
+	selectPanel.style.display = "none";
+	doEdit(currentIDX);
+}
+
+function setPanel(){
+  var pbarH08 = document.getElementById("pbarH08");
+  pbarH08.style.display = "inline";
+  pbarH08.className = "pbarpl4";
+	pbarH08.style.position = "absolute";
+	//pbarH08.style.height = getTwoRowHeight();
+	pbarH08.style.height = getHSquareSize() + "px";
+	pbarH08.style.zIndex = 99;
+	pbarH08.style.width = getWSquareSize() + "px";
+	pbarH08.style.border = "2px solid black";
+	pbarH08.innerHTML = "this is the town and these are the people";
+	pbarH08.style.fontSize = getLargeFont();
+	//for(var i=1; i < 8; i++){
+		pbarH08.style.top = getTopOffset(3,1);
+		pbarH08.style.left = getLeft(5);
+	//	alert("left=1");
+	//}
+	var pbarH07 = document.getElementById("pbarH07");
+  pbarH07.style.display = "inline";
+  pbarH07.className = "pbarpl3";
+	pbarH07.style.position = "absolute";
+	//pbarH08.style.height = getTwoRowHeight();
+	pbarH07.style.height = getHBiteSize() + "px";
+	pbarH07.style.zIndex = 99;
+	pbarH07.style.width = getWSquareSize() + "px";
+	pbarH07.style.border = "2px solid black";
+	pbarH07.innerHTML = "this is the town and these are the people this is the town and these are the people";
+	pbarH07.style.fontSize = getLargeFont() + "px";
+	//for(var i=1; i < 8; i++){
+		pbarH07.style.top = getTopOffset(3,0);
+		pbarH07.style.left = getLeft(5);
+		//alert(pbarH07.style.fontSize);
+	//	alert("left=1");
+	//}
+
+}
+//setPanel();
+
+</script>
+</div>
+
+
+<!-- select panel ends here -->
+</body>
+</html>

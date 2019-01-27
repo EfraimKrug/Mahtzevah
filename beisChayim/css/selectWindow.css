@@ -1,0 +1,69 @@
+
+#selectPanel {
+	position: fixed;
+	height: 100%;
+	width: 100%
+	top: 0px;
+	left: 0px;
+	display:none;
+	background-color:black;
+	z-index:10;
+	background-image: url("../img/sunset003.jpeg");
+	background-repeat: no-repeat;
+}
+
+.selectPanel {
+	background-color: black;
+}
+
+#selectTable {
+	position: absolute;
+	left:0px;
+	top: 0px;
+	background-image: url("../img/sunset003.jpeg");
+	border:2px solid black;
+	margin: 36px;
+	padding: 36px;
+}
+
+#choice {
+	position:absolute;
+	background-color: white;
+	color: black;
+	font-size: 14px;
+	left: 450px;
+	top: 50px;
+	z-index: 99;
+	border: 2px solid red;
+	padding: 15px;
+	display:none;
+}
+
+.ltr{
+	font-size: 24px;
+	border:1px solid black;
+	background-color: cyan;
+	padding:3px;
+	width: 64px;
+	height: 64px;
+	text-align:center;
+}
+
+.invisible {
+	visibility:hidden;
+}
+
+.rowColor01 {
+	background-color: lightgrey;
+	padding: 7px;
+}
+
+.rowColor00 {
+	background-color: lightblue;
+	padding: 7px;
+}
+
+.cell {
+	font-family:sans-serif;
+	padding:5px;
+}

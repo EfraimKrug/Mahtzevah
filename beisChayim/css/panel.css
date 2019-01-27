@@ -1,0 +1,66 @@
+#col001 {
+	display:none;
+}
+
+#pbar01, #pbar02, #pbar03, #pbar04,
+#pbar05, #pbar06, #pbar07, #pbar08,
+#pbar09, #pbar10, #pbar11, #pbar12 {
+	position: fixed;
+	width:359px;
+	height:45px;
+	font-weight: normal;
+	padding-top: 5px;
+	padding-bottom: 15px;
+	margin: 5px;
+	z-index: 20;
+	display:none;
+	box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+
+.pbarpl0 {
+	border: 2px solid #fffbf1;
+	color:#fffbf1;
+	font-family:sans-serif;
+	text-shadow: 2px 2px #000000;
+	background-image: url('../img/PlaqueBG.gif');
+	background-repeat:repeat;
+}
+
+.pbarpl1 {
+	border: 2px solid #fffbf1;
+	color:#fffbf1;
+	font-family:sans-serif;
+	text-shadow: 2px 2px #000000;
+	background-image: url('../img/bgbronze.jpg');
+	background-repeat:repeat;
+}
+
+.pbarpl2 {
+	border: 2px solid #fffbf1;
+	color:#fffbf1;
+	font-family:sans-serif;
+	text-shadow: 2px 2px #000000;
+	background-image: url('../img/bgcopper.jpg');
+	background-repeat:repeat;
+}
+
+.pbarpl3 {
+	border: 2px solid #fffbf1;
+	color:#fffbf1;
+	font-size: 1.1em;
+	font-family:sans-serif;
+	text-shadow: 2px 2px #000000;
+	background-image: url('../img/bgsilver.jpg');
+	background-repeat:repeat;
+}
+
+.pbarpl4 {
+	border: 2px solid #fffbf1;
+	color:#fffbf1;
+	font-size: 1.2em;
+	font-family:sans-serif;
+	text-shadow: 2px 2px #000000;
+	background-image: url('../img/bggold.jpg');
+	background-repeat:repeat;
+	box-shadow:0 1px 4px rgba(0, 0, 0, 2), 0 0 40px rgba(0, 0, 0, 2) inset;
+}

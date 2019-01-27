@@ -1,0 +1,44 @@
+
+#editPanel {
+	position: fixed;
+	height: 100%;
+	width: 100%
+	top: 0px;
+	left: 0px;
+	display:none;
+	background-color:black;
+	z-index:10;
+	background-image: url("../img/sunset003.jpeg");
+	background-repeat: no-repeat;
+}
+
+.editPanel {
+	background-color: black;
+	width:100%;
+}
+
+#ID {
+	display:none;
+}
+
+#editTable {
+	position: absolute;
+	left:0px;
+	top: 0px;
+	width: 90%;
+	background-image: url("../img/sunset003.jpeg");
+	border:2px solid black;
+	margin: 36px;
+	padding: 36px;
+}
+
+button {
+	width: 175px;
+	height: 39px;
+	display: inline;
+}
+
+.fname {
+	font-style: italic;
+	padding-right: 25px;
+}

@@ -1,0 +1,36 @@
+button {
+	width: 175px;
+	height: 39px;
+	display: inline;
+}
+
+#kboard {
+		width: 375px;
+		height: 375px;
+		background-color: beige;
+		text-align: center;
+		border: 8px solid black;
+		z-index: 30;
+}
+
+.kb {
+		padding: 15px;
+		margin: 15px;
+		border: 1px dashed blue;
+		font-size: 14;
+		font-weight: bold;
+		z-index: 30;
+		min-width: 125px;
+}
+
+#keyShow {
+	display: none;
+	position: absolute;
+	text-align: center;
+	top: 59px;
+	left: 498px;
+	width: 155px;
+	height: 39px;
+	border: 2px solid black;
+	background-color: blue;
+}

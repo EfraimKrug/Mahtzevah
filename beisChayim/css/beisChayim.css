@@ -1,0 +1,392 @@
+
+body {
+	top: 0px;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	margin: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	height: 100%;
+	width: 100%
+	overflow:hidden;
+	font-size: 32px;
+	z-index: 1;
+}
+
+#body {
+	postion:absolute;
+	top: 0px;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	//overflow-y:hidden;
+	font-size: 32px;
+	z-index: 1;
+}
+
+#spanTitle {
+		position: absolute;
+		top: 35px;
+		left: 35px;
+}
+
+#pdfView {
+		position: absolute;
+		display:none;
+		height: 100%;
+		z-index: 199;
+}
+
+#pdfImg {
+		position: absolute;
+		display:none;
+		height: 100%;
+		opacity: 1.0;
+		z-index: 199;
+}
+
+
+.bg0,.bg1,.bg2,.bg3,.bg4,.bg5 {
+		background-color:black;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+		font-size: 32px;
+		z-index: 10;
+}
+
+/* .bg0,.bg1,.bg2,.bg3,.bg4,.bg5 {
+    background-image: url("../img/sunset001.jpeg");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.bg0 {
+    background-image: url("../img/sunset000.jpeg");
+} */
+
+.bg0 {
+		//background-color:black;
+		background-image: url("../img/Kotel01.jpg");
+}
+
+.bg1 {
+    background-image: url("../img/sunset004.jpeg");
+		//background-image: url("../img/Rock001.jpg");
+}
+
+.bg2 {
+		font-size:1.1em;
+    //background-image: url("../img/sunset003.jpeg");
+		background-image: url("../img/Rock003.jpg");
+}
+
+.bg3 {
+		font-size:1.2em;
+    //background-image: url("../img/sunset005.jpeg");
+		background-image: url("../img/Rock002.jpg");
+}
+
+.bg4 {
+		font-size:1.3em;
+    //background-image: url("../img/sunset004.jpeg");
+		background-image: url("../img/Rock004.jpg");
+}
+
+/* .bg5 {
+    background-image: url("../img/sunset005.jpeg");
+} */
+
+
+#number {
+	color:white;
+	position:fixed;
+	top: 27px;
+	left: 527px;
+}
+
+h1 {
+	//color:black;
+}
+
+h1 {
+		font-size: 26px;
+    color: black;
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+		padding: 5px;
+		margin: 5px;
+}
+
+#Name {
+	gfont-family: helevetica;
+	position: fixed;
+	top: 127px;
+	left: 528px;
+	width: 365px;
+	font-size: 27px;
+	z-index: 20;
+}
+
+.Name, .Name0, .Name1, .Name2, .Name3, .Name4 {
+	position: fixed;
+	top: 127px;
+	left: 528px;
+	width: 365px;
+	color: white;
+	font-size: 27px;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.Name1 {
+	color: black;
+}
+
+.Name {
+	letter-spacing: 2px;
+	color: black;
+	text-shadow: -1px 0 black, 0 0px black, 1px 0 black, 0 -0px black;
+}
+
+.Name2, .Name3, .Name4 {
+	color: black;
+}
+
+#HName {
+	position: fixed;
+	top: 207px;
+	left: 528px;
+	width: 365px;
+	//color: cyan;
+	font-size: 27px;
+	z-index: 20;
+}
+
+.HName, .HName0, .HName1, .HName2, .HName3, .HName4 {
+	position: fixed;
+	top: 207px;
+	left: 528px;
+	width: 365px;
+	color: black;
+	font-size: 27px;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.HName {
+	letter-spacing: 2px;
+	text-shadow: -1px 0 black, 0 0px black, 1px 0 black, 0 -0px black;
+}
+
+.HName1 {
+	color: black;
+}
+
+.HName2, .HName3, .HName4 {
+	color: black;
+}
+
+#EDate, #HDate {
+	position: fixed;
+	top: 287px;
+	left: 528px;
+//	color: cyan;
+	font-size: 27px;
+	z-index: 20;
+}
+
+#HDate {
+	top: 327px;
+	z-index: 20;
+}
+
+.edate, .edate1, .edate2,.edate3,.edate4,
+.hdate, .hdate1,.hdate2, .hdate3, .hdate4 {
+	color:black;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.hdate{
+	letter-spacing: 2px;
+	color:black;
+	text-shadow: -1px 0 black, 0 0px black, 1px 0 black, 0 -0px black;
+}
+
+.edate{
+	letter-spacing: 2px;
+	color:black;
+	text-shadow: -1px 0 black, 0 0px white, 1px 0 black, 0 -0px white;
+}
+
+.edate1 {
+	color:black;
+}
+
+.hdate1 {
+	color:black;
+}
+
+.edate2,.edate3,.edate4
+.hdate1,.hdate2,.hdate4{
+	color: black;
+}
+
+.hdate3 {
+	color:black;
+}
+
+#Comments01 {
+	position: fixed;
+	top: 670px;
+	left: 128px;
+	width: 45%;
+	font-size: 17px;
+	z-index: 20;
+}
+
+.Comment010 {
+	color: black;
+}
+
+.Comment011, .Comment012, .Comment014 {
+	color: black;
+}
+
+ .Comment013 {
+	color:black;
+}
+
+#DPic01{
+	position: absolute;
+	top: 197px;
+	left: 8px;
+	max-width: 213px;
+	height: 213px;
+}
+
+#DPic02{
+	position: absolute;
+	top: 410px;
+	left: 228px;
+	width: 313px;
+	max-height: 156px;
+}
+
+#Pic01{
+	position: relative;
+	visibility: hidden;
+	left: 0px;
+	max-width: 213px;
+	height: 356px;
+	height: 100%;
+	z-index: 20;
+}
+
+#Pic02{
+	position: relative;
+	visibility: hidden;
+	left: 0px;
+	/*top: 427px;
+	left: 628px;
+	width: 265px; */
+	max-height: 156px;
+	height: 100%;
+	z-index: 20;
+}
+
+#fbook,#gotofbook{
+	position: fixed;
+	top: 27px;
+	left:1513px;
+	width:59px;
+	height:59px;
+	display:inline;
+}
+
+#sbar01, #sbar02, #sbar03, #sbar04, #sbar05, #sbar06, #sbar07, #sbar08, #sbar09 {
+	position: fixed;
+	top: 27px;
+	left:1113px;
+	width:359px;
+	height:39px;
+	font-weight: bold;
+	padding: 10px;
+	margin: 10px;
+	display:inline;
+	z-index: 20;
+}
+
+#sbar02 {
+	top: 92px;
+}
+
+#sbar03 {
+	top: 157px;
+}
+
+#sbar04 {
+	top: 222px;
+}
+
+#sbar05 {
+	top: 287px;
+}
+
+#sbar06 {
+	top: 287px;
+}
+
+#sbar07 {
+	top: 287px;
+}
+
+#sbar08 {
+	top: 287px;
+}
+
+#sbar09 {
+	top: 287px;
+}
+
+.sbar {
+	border: 2px solid brown;
+	color:brown;
+	background-color: black;
+}
+
+#monthSelect {
+		position: relative;
+		display:show;
+		z-index:30;
+}
+
+#security{
+	position: absolute;
+	z-index:30;
+}
+
+#actionSelect{
+	position:relative;
+	font-size: 34px;
+	z-index:30;
+}
+
+#actionSelect option {
+	font-size: 34px;
+	font-weight: bold;
+}
+
+#kboard{
+	z-index:30;
+}
+
+#test {
+	position: absolute;
+	left: 550px;
+	top: 700px;
+	z-index:30;
+	width: 15px;
+	height: 15px;
+	background-color: red;
+}

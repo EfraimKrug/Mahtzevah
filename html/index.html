@@ -1,0 +1,256 @@
+<!-- matzevah/index.html -->
+<!-- http://mahtzevah.s3-website-us-east-1.amazonaws.com/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../css/mahtzevah.css">
+</head>
+<meta name="mahtzevah" keywords="interactive yahrzeit mahtzevah memorial plaque" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<div id=titleBar>
+  <div id=title>Interactive Memorial Plaque Display</div>
+  <div id=sbar class=sbar1>Interactive</div>
+</div>
+<div id=entries>
+<div id=entry1 onclick=getEntry1();>
+<p><font size=5.2em>Build it yourself!</font></p>
+<p>It costs about $100 for
+a 10 inch screen and $100 for everything else. It takes between 4 and 8 hours of time. (That is,
+if everything goes wrong a few times!)</p>
+<p>You will also have to make choices regarding installation.
+For this, you may want to hire a carpenter or general contractor.
+In the Boston area, I have people I work with. </p>
+<p>I pride myself on clear instructions. Please take a
+look!</p>
+</div>
+<div id=entry2 onclick=getEntry2();>
+  Entry #2
+</div>
+<div id=entry3 onclick=getEntry3();>
+<p>There is an electronic board called a Rasperry Pi. This will be
+  mounted on the back of a monitor that you can then frame in some
+  way and hang up in your chosen location.
+</p>
+<p>The location must have proximity to an outlet, and if you want to
+  use the internet for convenience - for installation and transferring
+  files via email - then WIFI needs to be accessible.
+</p>
+<p>And that's it. <a href="https://s3.amazonaws.com/mahtzevah/beisChayim/beisChayim.html">Click here</a>
+  to see what the display looks like. Remember -
+  all backgrounds and colors can be changed to anything you want.
+</p>
+</div>
+</div>
+  <div id=container>
+  <div id=navButtons><div id=backButton  onclick=goBack();>Back</div><div id=forwardButton  onclick=goForward();>Next</div></div>
+  <!-- first page of instructions -->
+  <div id=instructions1>
+  <div class=listDiv>
+  <ul style="list-style-type:disc">
+    <li>Hardware - buy this stuff!
+      <ul style="list-style-type:square">
+        <li><span class=listItem><a href="https://www.adafruit.com/product/3055"  target="_blank">Raspberry Pi (3 model B)</a> get the Heat Sink also.</span></li>
+        <li><span class=listItem><a href="https://www.waveshare.com/10.1inch-HDMI-LCD.htm"  target="_blank">Touch Screen</a> This monitor is about 10 inches wide. You may want to shop for a larger monitor... but I would suggest trying it out with the small monitor first.</span></li>
+        <li><span class=listItem><a href="https://www.adafruit.com/product/1294"  target="_blank">Micro sd card</a> - 8 gig may be enough, but I use 32 gig - you can buy these anywhere...</span></li>
+        <li><span class=listItem><a href="https://www.adafruit.com/product/939"  target="_blank">Micro sd card reader</a></span></li>
+        <li><span class=listItem><a href="https://www.adafruit.com/product/1995"  target="_blank">Power supply</a> for Raspberry Pi</span></li>
+        <li><span class=listItem><a href="https://www.adafruit.com/product/592"  target="_blank">Power supply</a> for the monitor</span></li>
+        <li><span class=listItem><a href="https://www.adafruit.com/product/608"  target="_blank">1 HDMI Cable</a> between the monitor and the Raspberry Pi. You need HDMI connectors on both sides.
+          I would suggest you splurge the extra $2 and get a 1-meter cable</span></li>
+        <li><span class=listItem><a href="https://www.adafruit.com/product/592"  target="_blank">1 USB to Micro USB</a> - again, I would suggest getting about a meter. You can
+          always coil it up and hide it somewhere!</span></li>
+        <li><span class=listItem><a href="https://www.amazon.com/AmazonBasics-3-Button-Wired-Mouse-Black/dp/B005EJH6RW/ref=asc_df_B005EJH6RW/?tag=hyprod-20&linkCode=df0&hvadid=167140037427&hvpos=1o5&hvnetw=g&hvrand=16759348838016604106&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9002058&hvtargid=pla-77837444966&psc=1"  target="_blank">Mouse</a> - pretty much any mouse with USB (if you have an old one, use it!)</span></li>
+        <li><span class=listItem><a href="https://www.amazon.com/VicTsing-Keyboard-Ultra-Thin-Computer-Desktop-Black/dp/B07DRG6ZVD/ref=sr_1_2_sspa?s=electronics&ie=UTF8&qid=1547746819&sr=1-2-spons&keywords=keyboard&psc=1"  target="_blank">Keyboard</a> - pretty much any keyboard with USB (if you have an old one, use it!)</span></li>
+      </ul>
+    </li>
+    <br><br>
+    <li>Put it together
+      <ul style="list-style-type:square">
+        <li><span class=listItem><a href="https://www.modmypi.com/blog/waveshare-101-screen-assembly-guide"  target="_blank">Here is a good guide</a> how to put the hardware together</span></li>
+        <li><span class=listItem>The main thing to remember is this:
+          <ul style="list-style-type:square">
+            <li><span class=listItem>You have to have 2 cords from the raspberry pi to the monitor</span></li>
+            <li><span class=listItem>You have to power the monitor</span></li>
+            <li><span class=listItem>You have to power the raspberry pi </span></li>
+            <li><span class=listItem>The rest is getting it to fit together nicely! and making it look good.</span></li>
+            <li><span class=listItem>The mouse and keyboard both plug into the raspberry pi</span></li>
+          </ul>
+      </ul>
+    </li>
+  </ul>
+  <br><br>
+  </div>
+</li>
+</ul>
+</div>
+
+
+
+<!-- second page of instructions -->
+<div id=instructions2>
+<p><br><br></p>
+<div class=listDiv>
+<ul style="list-style-type:disc">
+  <li>Software - download this to a Windows computer!
+    <ul style="list-style-type:square">
+      <li><span class=listItem><a href="https://www.raspberrypi.org/downloads/raspbian/"  target="_blank">Download the operating
+        system</a> The zip file - to a windows machine: Raspbian Stretch with desktop and recommended software</span></li>
+    </ul>
+  </li>
+  <li><span class=listItem>Format your SD Card!</span>
+    <ul style="list-style-type:square">
+      <li><span class=listItem>Put the card in the reader</span></li>
+      <li><span class=listItem>Plug the reader into a USB port on your windows computer</span></li>
+      <li><span class=listItem>Put the card in the reader</span></li>
+      <li><span class=listItem>Open the file explorer</span></li>
+      <li><span class=listItem>Click on "Computer"</span></li>
+      <li><span class=listItem>Find the removeable disk that is pointing to your SD Card, Right click on it, and choose 'Format'</span></li>
+      <li><span class=listItem>Wait until it is complete.</span></li>
+    </ul>
+    <li><span class=listItem>Unzip your operating system</span>
+      <ul style="list-style-type:square">
+        <li><span class=listItem>Right click on the file name in the Downloads folder</span></li>
+        <li><span class=listItem>Choose 'Extract All'</span></li>
+        <li><span class=listItem>Browse, find 'COMPUTER' and click on your SD Card</span></li>
+        <li><span class=listItem>Wait until it is complete.</span></li>
+        <li><span class=listItem>Take the SD Card and Reader out of the Windows Computer, and put them into one of the USB slots in your Raspberry Pi</span></li>
+        <li><span class=listItem>Plug it in and follow instructions!</span></li>
+      </ul>
+  </li>
+</ul>
+<br><br>
+</div>
+</li>
+</ul>
+</div>
+
+<!-- third page of instructions -->
+<div id=instructions3>
+<p><br><br></p>
+<div class=listDiv>
+<ul style="list-style-type:disc">
+  <li><span class=listItem>Open up your PI and signon</span></li>
+  <li><span class=listItem>Plug in your mouse and keyboard - for convenience</span></li>
+  <li><span class=listItem>Open the control panel menu, and navigate to internet->browser</span></li>
+    <ul style="list-style-type:square">
+      <li><span class=listItem>Create or download the yahrzeits.cvs folder</span></li>
+      <li><span class=listItem>Download (if you use shulcloud and have yahrzeit data there):</span>
+        <ul style="list-style-type:disc">
+            <li><span class=listItem>Go to your shulcloud website</li>
+            <li><span class=listItem>Admin menu -> Yahrzeits</li>
+            <li><span class=listItem>Clear all fields and click 'Export this view'</li>
+          </ul>
+      </li>
+      <li><span class=listItem>Or Build:</span>
+        <ul style="list-style-type:disc">
+            <li><span class=listItem><a href="../downloads/yahrzeits.cvs"  download>Download my yahrzeits file</a></span></li>
+            <ul style="list-style-type:disc">
+                <li><span class=listItem>Open it with libre office (or the spread sheet editor you have)</li>
+                <li><span class=listItem>Save it, and close your spread sheet editor.</li>
+            </ul>
+          </ul>
+      </li>
+      <li><span class=listItem>Download my install file onto your pi, and run it:</span></li>
+      <li><span class=listItem>Open the browser, and navigate to this page</span></li>
+      <li><span class=listItem><a href="../downloads/appInstall"  download>Download the install script</a></span></li>
+      <li><span class=listItem>Open the terminal</span></li>
+      <li><span class=listItem>Type the following commands, hit enter and wait until it has finished: </span></li>
+      <li><span class=listItem>cd ~</span></li>
+      <li><span class=listItem>mkdir bin</span></li>
+      <li><span class=listItem>cp ~/Downloads/appInstall ~/bin</span></li>
+      <li><span class=listItem>chmod 555 ~/bin/*</span></li>
+      <li><span class=listItem>~/bin/appInstall</span></li>
+      <li><span class=listItem></span></li>
+    </ul>
+  </li>
+</ul>
+<br><br>
+</div>
+</li>
+</ul>
+</div>
+
+<!-- end container -->
+</div>
+
+
+<!--
+  <li>Now get the software
+    <ul style="list-style-type:square">
+      <li><span class=listItem><a href="https://www.raspberrypi.org/downloads/raspbian/"  target="_blank">Download the operating system</a>The zip file - to a windows machine: Raspbian Stretch with desktop and recommended software</span></li>
+      <li><span class=listItem>Insert your sd card into the reader</span></li>
+      <li><span class=listItem>Insert your reader into a USB port of your windows computer</span></li>
+      <li><span class=listItem>Open file manager, click on 'Computer', find the removeable drive</span></li>
+      <li><span class=listItem>Right Click on the removeable drive and Format</span></li>
+    </ul>
+  <p>Fully able to run with no internet (although it is helpful for setup).</p>
+  <p>Software is free - easy to install, easy to run.</p>
+  <p>Hardware is what I use in my shul, and I am very happy with it!</p>
+  <p>Code is free - just download, install and run</p>
+  <p>I hope the instructions are clear. If they are not, please contact me!</p>
+-->
+</body>
+</html>
+<script>
+var TitleInterval = "";
+var title = ["Interactive", "Memorial", "Plaque", "Display"];
+var bgColl = ["bgbronze.jpg","bgcopper.jpg","bgsilver.jpg","bggold.jpg","bgplaque.jpg"];
+var pointer = 0;
+var bgpointer = 1;
+var currentPage = 1;
+
+function getNext(){
+  if(currentPage < 3) currentPage++;
+  return currentPage;
+}
+
+function getPrevious(){
+  if(currentPage > 1) currentPage--;
+  return currentPage;
+}
+
+function goBack(){
+  instructions = document.getElementById("instructions" + currentPage);
+  instructions.style.display = 'none';
+  instructions = document.getElementById("instructions" + getPrevious());
+  instructions.style.display = 'inline';
+}
+
+function goForward(){
+  instructions = document.getElementById("instructions" + currentPage);
+  instructions.style.display = 'none';
+  instructions = document.getElementById("instructions" + getNext());
+  instructions.style.display = 'inline';
+}
+
+function getEntry1(){
+  currentPage = 1;
+  container = document.getElementById("container");
+  container.style.display = 'inline';
+  instructions = document.getElementById("instructions" + currentPage);
+  instructions.style.display = 'inline';
+}
+
+function getEntry3(){
+  window.location.href = "https://s3.amazonaws.com/mahtzevah/beisChayim/beisChayim.html";
+}
+
+function loadElement(){
+  pointer++;
+  if(pointer > 3){
+    bgpointer++;
+    bgpointer = (bgpointer > 5) ? 1:bgpointer;
+    pointer = 0;
+    sbar.className = 'sbar' + bgpointer;
+  }
+  sbar = document.getElementById('sbar');
+  sbar.innerHTML = title[pointer];
+}
+
+function runTitle(){
+  TitleInterval = setInterval( function(){ loadElement(); }, 2000);
+}
+runTitle();
+</script>

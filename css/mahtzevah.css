@@ -1,0 +1,187 @@
+body {
+  background-color:black;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-size: 18px;
+  z-index: 2;
+  background-image: url("../img/Kotel01.jpg");
+}
+
+#titleBar {
+  float:left;
+  width: 72%;
+  height: 5%;
+  font-size: 18px;
+  color: black;
+  padding: 20px;
+  /*border: 4px solid black;*/
+}
+
+#title{
+  float:left;
+  width: 65%;
+  height: 5%;
+  font-size: 36px;
+  color: black;
+  padding: 20px;
+}
+
+#entries {
+  float:left;
+  width: 72%;
+  height: 50%;
+  font-size: 18px;
+  color: black;
+  padding: 20px;
+  /*border: 4px solid black;*/
+}
+
+#entry1 {
+  float: left;
+  width: 25%;
+  height: 80%;
+  font-size: 18px;
+  color: green;
+  padding: 20px;
+  margin: 20px;
+  border: 4px outset black;
+  background-color: beige;
+}
+
+#entry2 {
+  float: left;
+  width: 25%;
+  height: 80%;
+  font-size: 18px;
+  color: green;
+  padding: 20px;
+  margin: 20px;
+  border: 4px outset black;
+  background-color: beige;
+}
+
+#entry3 {
+  float: left;
+  width: 25%;
+  height: 80%;
+  font-size: 18px;
+  color: green;
+  padding: 20px;
+  margin: 20px;
+  border: 4px outset black;
+  background-color: beige;
+}
+
+#sbar{
+  float: left;
+  width: 248px;
+  height: 46px;
+  font-size: 32px;
+  background-color: black;
+  color: white;
+  padding: 20px;
+  padding-left:40px;
+}
+
+.sbar1 {
+  background-image: url('../img/bgbronze.jpg');
+}
+
+.sbar2 {
+  background-image: url('../img/bgcopper.jpg');
+}
+
+.sbar3 {
+  background-image: url('../img/bgsilver.jpg');
+}
+
+.sbar4 {
+  background-image: url('../img/bggold.jpg');
+}
+
+.sbar5 {
+  background-image: url('../img/bgplaque.gif');
+}
+
+/*          instructions              */
+#container {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  height:100%;
+  width: 45%;
+  display: none;
+}
+
+#instructions1 {
+  position: absolute;
+  font-size:0.9em;
+  left: 0px;
+  top: 65px;
+  height:100%;
+  width: 100%;
+  background-image: url('../img/bgplaque.gif');
+  z-index:10;
+  display: none;
+  border:4px solid black;
+}
+
+#instructions2 {
+  position: absolute;
+  left: 0px;
+  top: 65px;
+  height:100%;
+  width: 100%;
+  background-image: url('../img/bgplaque.gif');
+  z-index:11;
+  display: none;
+}
+
+#instructions3 {
+  position: absolute;
+  left: 0px;
+  top: 65px;
+  height:100%;
+  width: 100%;
+  background-image: url('../img/bgplaque.gif');
+  z-index:12;
+  display: none;
+}
+
+.listDiv{
+  width: 85%;
+}
+
+.listItem {
+  color: blue;
+  text-emphasis: bold;
+}
+
+#navButtons{
+    position: relative;
+    height: 2%;
+    width: 90%;
+    /*border: 1px solid black;*/
+}
+
+#backButton{
+    float:left;
+    height: 95%;
+    width: 10%;
+    border: 1px outset red;
+    padding: 10px;
+    margin:5%;
+    background-image: url('../img/bgbronze.jpg');
+}
+
+#forwardButton{
+  float:right;
+  height: 95%;
+  width: 10%;
+  border: 1px outset red;
+  padding: 10px;
+  margin:5%;
+  background-image: url('../img/bgbronze.jpg');
+}

@@ -1,0 +1,29 @@
+
+#newPanel {
+	position: absolute;
+	height: 100%;
+	width: 100%
+	top: 0px;
+	left: 0px;
+	display:none;
+	background-color:black;
+	z-index:10;
+	background-image: url("../img/sunset003.jpeg");
+	background-repeat: no-repeat;
+}
+
+.newPanel {
+	background-color: black;
+	width: 90%;
+}
+
+#newTable {
+	position: absolute;
+	left:0px;
+	top: 0px;
+	background-image: url("../img/sunset003.jpeg");
+	width: 80%;
+	border:2px solid black;
+	margin: 36px;
+	padding: 36px;
+}
