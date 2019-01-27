@@ -39,6 +39,7 @@ function checkToday(checkDate){
 }
 
 function buildPanel01(){
+  //console.log("Building panel");
   var outLine;
   var lag = -1;
   var j = 0;
@@ -94,9 +95,8 @@ function calcOffset(i){
 }
 
 function renderingPlaques(callback){
-    //console.log("In renderingPlaques: " + currentPosition + ":" + panelArray.length);
+    console.log("In renderingPlaques: " + currentPosition + ":" + panelArray.length);
   	var tf = TIME_FACTOR * 1000;
-    console.log("renderingPlaques");
   	PlaqueInterval = setInterval( function(){ if(currentPosition > panelArray.length){ currentPosition = 0; return 0;}; renderScreen(callback); }, tf);
 }
 
@@ -120,82 +120,85 @@ function hideScreen02(){
     }
 }
 
-var currentPosition = 0;
-function renderScreen(callback){
-  hideScreen02();
-  var tf = TIME_FACTOR * 1000;
-  var vi = 0;
 
-  for(var row_count=0; (currentPosition < panelArray.length && row_count < ROW_COUNT); currentPosition++, row_count++){
-      //console.log("top: " + currentPosition + ":" + row_count + ":" + panelArray.length);
-      vi = parseInt(vi) + 2;
-      if(vi < 10) vi = "0" + vi;
-      if(vi > 12) vi = "01";
-      //console.log(vi);
-      for(var j=0; j < COLUMN_COUNT; j++){
-        if(!(panelArray[currentPosition][j])){
-          currentPosition = 0;
-          setTimeout(callback, tf);
-          return;
-        }
-        //if(currentPosition > 375) console.log("currentPosition: " + currentPosition + "; col: " + j + "; row_count: " + row_count);
-        var pbar = document.getElementById(getColID(j) + vi);
-        pbar.style.position = "absolute";
-        pbar.style.left = getColumnOffset(j);
+var renderingPlaquesX = function (cb){
+    console.log("renderingPlaquesX");
+    var currPos = 0;
+    var callback = cb;
+    var actions = {
+        renderScreen: function (){
+            hideScreen02();
+            //var tf = TIME_FACTOR * 1000;
+            var vi = 0;
+            //console.log("up here: " + panelArray.length + ":" + currPos );
+            for(var row_count=0; (currPos < panelArray.length && row_count < ROW_COUNT); currPos++, row_count++){
+                console.log("rendering: " + currPos);
+                vi = parseInt(vi) + 2;
+                if(vi < 10) vi = "0" + vi;
+                if(vi > 12) vi = "01";
+                for(var j=0; j < COLUMN_COUNT; j++){
+                  if(!(panelArray[currPos][j])){
+                    currPos = 0;
+                    console.log("here");
+                    setTimeout(callback, 1500);
+                    return;
+                  }
+                  //console.log("rendering");
+                  //if(currPos > 375) console.log("currPos: " + currPos + "; col: " + j + "; row_count: " + row_count);
+                  var pbar = document.getElementById(getColID(j) + vi);
+                  pbar.style.position = "absolute";
+                  pbar.style.left = getColumnOffset(j);
 
-        pbar.style.top = getTopOffset(row_count);
-        pbar.className = getBGround(panelArray[currentPosition][j]["PayLevel"]);
-        if(RunPhaseEdit()){
-          pbar.setAttribute("onclick", "getEdit(" + panelArray[currentPosition][j]["IDX"] + ")" );
-        }
+                  pbar.style.top = getTopOffset(row_count);
+                  pbar.className = getBGround(panelArray[currPos][j]["PayLevel"]);
+                  if(RunPhaseEdit()){
+                    pbar.setAttribute("onclick", "getEdit(" + panelArray[currPos][j]["IDX"] + ")" );
+                  }
 
-        pbar.style.width = getPanelBoxWidth() + "px";
-        pbar.style.height = getPanelBoxHeight() + "px";
-        pbar.style.font = "normal";
+                  pbar.style.width = getPanelBoxWidth() + "px";
+                  pbar.style.height = getPanelBoxHeight() + "px";
+                  pbar.style.font = "normal";
 
-        pbar.style.fontSize = getPanelFont() + "px";
-        if(panelArray[currentPosition][j]["Name"].length > 28){
-          pbar.style.fontSize = (getPanelFont() - 2) + "px";
-        }
+                  pbar.style.fontSize = getPanelFont() + "px";
+                  if(panelArray[currPos][j]["Name"].length > 28){
+                    pbar.style.fontSize = (getPanelFont() - 2) + "px";
+                  }
 
-        pbar.style.padding = "3px";
-        pbar.style.margin = "0px";
-        pbar.style.display = "inline";
-        pbar.style.zIndex = 5;
-        //console.log(pbar.style.width + ":" + pbar.style.left);
-        var dt = panelArray[currentPosition][j]["Date"];
-        if(panelArray[currentPosition][j]["Date"].substring(0,1) == "0"){
-          dt = panelArray[currentPosition][j]["Date"].substring(1);
+                  pbar.style.padding = "3px";
+                  pbar.style.margin = "0px";
+                  pbar.style.display = "inline";
+                  pbar.style.zIndex = 5;
+                  //console.log(pbar.style.width + ":" + pbar.style.left);
+                  var dt = panelArray[currPos][j]["Date"];
+                  if(panelArray[currPos][j]["Date"].substring(0,1) == "0"){
+                    dt = panelArray[currPos][j]["Date"].substring(1);
+                  }
+                  pbar.innerHTML = panelArray[currPos][j]["Name"] + "<br>" + dt;
+                  if(pbar.innerHTML.indexOf("undefined") > -1){
+                    pbar.innerHTML = pbar.innerHTML.substring(0,pbar.innerHTML.indexOf("undefined"));
+                    //console.log(currPos + "[" +panelArray[currPos][j]["Name"] + "]");
+                  }
+                  //alert(pbar.innerHTML.indexOf("undefined"));
+                  pbar.style.border = "1px solid black";
+                  if(checkToday(dt)){
+                    pbar.style.border = "2px solid orange";
+                    pbar.style.zIndex = 10;
+                    pbar.style.padding = "10px";
+                    pbar.style.width = (getPanelBoxWidth() - 16) + "px";
+                    pbar.style.height = (getPanelBoxHeight() - 8) + "px";
+                    pbar.style.top = (getTopOffsetInt(row_count) - 4) + "px";
+                    pbar.style.left = (getColumnOffsetInt(j) - 1) + "px";
+                  }
+                  tempID = panelArray[currPos][j]["IDX"];
+                  if(currPos > panelArray.length ){
+                    console.log("ANd Here: " + currPos);
+                    currPos = 0;
+                    setTimeout(callback, 1500);
+                    return;
+                  }
+                }
+              }
+            },
+          };
+          return actions;
         }
-        pbar.innerHTML = panelArray[currentPosition][j]["Name"] + "<br>" + dt;
-        if(pbar.innerHTML.indexOf("undefined") > -1){
-          pbar.innerHTML = pbar.innerHTML.substring(0,pbar.innerHTML.indexOf("undefined"));
-          //console.log(currentPosition + "[" +panelArray[currentPosition][j]["Name"] + "]");
-        }
-        //alert(pbar.innerHTML.indexOf("undefined"));
-        pbar.style.border = "1px solid black";
-        if(checkToday(dt)){
-          //console.log("Name: " + pbar.innerHTML + ": Checking: " + dt);
-            pbar.style.border = "2px solid orange";
-          //pbar.style.border = "2px solid #BAB1A7";
-          pbar.style.zIndex = 10;
-          pbar.style.padding = "10px";
-          pbar.style.width = (getPanelBoxWidth() - 16) + "px";
-          pbar.style.height = (getPanelBoxHeight() - 8) + "px";
-          pbar.style.top = (getTopOffsetInt(row_count) - 4) + "px";
-          pbar.style.left = (getColumnOffsetInt(j) - 1) + "px";
-
-          //pbar.style.color = "red";
-          //pbar.style.borderLeft = "2px solid red";
-        }
-        tempID = panelArray[currentPosition][j]["IDX"];
-
-        if(currentPosition > panelArray.length - 2 ){
-          console.log("What about this?");
-          currentPosition = 0;
-          setTimeout(callback, tf);
-          return;
-        }
-      }
-    }
-}

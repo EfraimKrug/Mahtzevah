@@ -1,1 +1,2 @@
+//var RunPhase = { "phase01": {"run_type":"security"}};
 var RunPhase = { "phase01": {"run_type":"view"}};

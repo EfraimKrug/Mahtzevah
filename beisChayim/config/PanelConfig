@@ -1,1 +1,4 @@
-var PanelConfigList = '{ "settings": {"PanelOffset":"80","PanelLeftOffset":"80", "BoxHeight":"52", "RowHeight":"64", "BoxWidth":"159", "ColumnWidth":"179", "PanelFont":"14", "SideBoxWidth":"139"}}';
+//10.1" screen:
+//var PanelConfigList = '{ "settings": {"PanelOffset":"80","PanelLeftOffset":"80", "BoxHeight":"52", "RowHeight":"64", "BoxWidth":"159", "ColumnWidth":"179", "PanelFont":"14", "SideBoxWidth":"139"}}';
+//17" screen
+var PanelConfigList = '{ "settings": {"PanelOffset":"120","PanelLeftOffset":"120", "BoxHeight":"50", "RowHeight":"71", "BoxWidth":"259", "ColumnWidth":"279", "PanelFont":"12", "SideBoxWidth":"259"}}';

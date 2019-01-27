@@ -10,7 +10,6 @@ var TESTING_OFF = false;
 
 function correctHFontSize(val){
 		return val;
-		//return val/2;
 }
 
 function getNextTop(t){
@@ -34,11 +33,7 @@ function positionElts(){
 		dpic01.style.left = getLeftPic1();
 
 		var pic01  = document.getElementById("Pic01");
-		//pic01.style.top = getTopPic1();
-		//pic01.style.left = getLeftOffset(1,0);
 		pic01.style.left = "0px";
-		//pic01.style.width =  "145px";
-		//pic01.style.height = "175px";
 
 		t = getNextTop(t);
 		if(t == 0) s++;
@@ -46,7 +41,6 @@ function positionElts(){
 		var hname = document.getElementById("HName");
 		hname.style.top = getTopName2();
 		hname.style.left = getLeftOffsetName();
-		//hname.style.left = getLeftOffset(2,0);
 		hname.style.width = getOneByWidth();
 		hname.style.fontSize = getName2Font();
 
@@ -58,7 +52,6 @@ function positionElts(){
 
 		var hdate = document.getElementById("HDate");
 		hdate.style.top = getTopDate1();
-		//hdate.style.left = getLeftOffset(2,0);
 		hdate.style.left = getLeftOffsetName();
 		hdate.style.width = getOneByWidth();
 		hdate.style.fontSize = getName1Font();
@@ -72,10 +65,7 @@ function positionElts(){
 		var edate = document.getElementById("EDate");
 		edate.style.top = getTopDate2();
 		edate.style.left = getLeftOffsetName();
-		//edate.style.left = getLeftOffset(2,0);
-		//edate.style.width = getWSquareSize() + "px";
 		edate.style.width = getOneByWidth();
-		//edate.style.fontSize = correctHFontSize(getHBiteSize()) + "px";
 		edate.style.fontSize = getName2Font();
 
 		t = getNextTop(t);
@@ -87,10 +77,6 @@ function positionElts(){
 
 		var pic02  = document.getElementById("Pic02");
 		pic02.style.left = getLeftPic2();
-		//pic02.style.top = getTopPic2();
-		//pic02.style.left = getLeftPic2();
-		//pic02.style.left = getLeftOffset(2,0);
-		//pic02.style.width = getWSquareSize() + "px";
 		var Comment01  = document.getElementById("Comments01");
 		Comment01.style.top = getTopComment01();
 		Comment01.style.left = getLeftComment01();
@@ -123,85 +109,134 @@ function hideScreen01(){
 			Comments01.style.display = "none";
 }
 
-function endCycle(){
-	console.log("endCycel");
-	if(DISPLAY_SETTING == 2){
-			switchLoad();
-	} else {
-			firstLoad();
-	}
-}
-
-var processRunning = -1;
-var PlaqueInterval;
-var OneByInterval;
-function switchLoad(){
-	if (processRunning == 0){
-		processRunning = 1;
-		currentPosition = 0;
-		clearInterval(OneByInterval);
-		hideScreen01();
-		hideSideBarArray();
-		buildPanel01();
-		renderingPlaques(endCycle);
-	} else {
-	if (processRunning == 1){
-		processRunning = 0;
-		hideScreen02();
-		clearInterval(PlaqueInterval);
-		console.log("Start Render");
-		renderOnebyOne(endCycle);
-		console.log("End Render");
-		}
-	}
-
-}
-// plaque display
-function firstLoad(){
-	clearInterval(OneByInterval);
-	clearInterval(PlaqueInterval);
-
-	hideScreen01();
-	screenHidden = false;
-	hideSideBarArray();
-	hideScreen02();
-	buildPanel01();
-
-	if(DISPLAY_SETTING == 1 || DISPLAY_SETTING == 2){
-			processRunning = 0;
-			renderOnebyOne(endCycle);
-		}
-
-	if(DISPLAY_SETTING == 0){
-		processRunning = 1;
-		currentPosition = 0;
-		renderingPlaques(endCycle);
-	}
-	addBodyListener();
-}
-
-// individual name display
-function renderOnebyOne(callback){
-	var i = -1;
+var timeControl = (function(){
 	var tf = TIME_FACTOR * 1000;
+	OneByInterval = 0;
+	SideInterval = 0;
+	var actions = {
+		setTimer: function(func){
+				//console.log("setting timer");
+				OneByInterval = setInterval(func, tf);
+		},
+		setSideTimer: function(func){
+				//alert("Setting Side Timer");
+				console.log("setting side timer");
+				SideInterval = setInterval(func, tf);
+		},
+		clearTimer: function(){
+				//console.log("clearing timer");
+				clearInterval(OneByInterval);
+		},
+		clearSideTimer: function(){
+				console.log("clearing side timer");
+				clearInterval(SideInterval);
+		}
+	};
+	return actions;
+})();
+
+function setupTimerLoad(){
+	buildPanel01();
 	setCurrentMonth();
-	//console.log(currentMonth);
-	console.log("Loading first");
-	loadElement(i = getNum(i), callback);
-	console.log("Ready to load next");
-	OneByInterval = setInterval( function(){ loadElement(i = getNum(i), callback); }, tf);
+	timerLoad();
 }
+
+function timerLoad(lastNum){
+	//console.log("timerLoad: " + lastNum);
+	var lastN = -1;
+	var renderAll = new renderBoth();
+	var rendPlaques = new renderingPlaquesX(renderAll.endingCycle);
+ 	if(lastNum) lastN = lastNum;
+	//console.log("timerLoad2: " + lastN);
+	if(DISPLAY_SETTING == 0) timeControl.setTimer(function(){ renderAll.loadingPlaques(rendPlaques);});
+	timeControl.setSideTimer(loadSideBar);
+	if(DISPLAY_SETTING == 1) timeControl.setTimer(function(){ lastN = renderAll.loadingOneBy(lastN);});
+	if(DISPLAY_SETTING == 2) timeControl.setTimer(function(){ renderAll.loadAlternate();});
+
+	//	OneByInterval = setInterval( function(){ renderAll.loadingPlaques(rendPlaques);}, tf);
+	//if(DISPLAY_SETTING == 1)
+	//	OneByInterval = setInterval( function(){ renderAll.loadingOneBy();}, tf);
+	//if(DISPLAY_SETTING == 2)
+	//	OneByInterval = setInterval( function(){ renderAll.loadAlternate();}, tf);
+}
+
+function sideTimerLoad(lastNum){
+	//console.log("timerLoad: " + lastNum);
+	var lastN = -1;
+	var renderAll = new renderBoth();
+	var rendPlaques = new renderingPlaquesX(renderAll.endingCycle);
+ 	if(lastNum) lastN = lastNum;
+	//console.log("timerLoad2: " + lastN);
+	timeControl.setTimer(function(){ renderAll.loadingPlaques(rendPlaques);});
+}
+
+var renderBoth = function(){
+	var i = -1;
+	var pRun = 1;
+	var actions = {
+		loadAlternate: function(){
+			if(this.isOneBy()){
+				hideScreen02();
+				this.loadingOneBy(i);
+			} else {
+				hideScreen01();
+				this.loadingPlaques();
+			}
+		},
+		loadAlternateEvery: function(){
+			if(this.isOneBy()){
+				hideScreen02();
+				this.loadingOneBy(i);
+				this.setProcessPlaque();
+			} else {
+				hideScreen01();
+				this.loadingPlaques();
+				this.setProcessOneBy();
+			}
+		},
+		loadingOneBy: function(lastNum){
+			//console.log("loadingOneBy: " + lastNum);
+			i = lastNum ? lastNum : i;
+			i = getNum(i);
+			loadElement(i, this.endingCycle);
+			return i;
+		},
+		endingCycle: function(){
+			i = -1;
+			if(DISPLAY_SETTING == 2){
+				if(pRun == 2) pRun = 1;
+				else pRun = 2;
+			}
+		},
+		loadingPlaques: function(rendP){
+			rendP.renderScreen();
+		},
+		setProcessOneBy: function(){
+			pRun = 1;
+		},
+		setProcessPlaque: function(){
+			pRun = 2;
+		},
+		isOneBy: function(){
+			return pRun == 1;
+		},
+		isPlaque: function(){
+			return pRun == 2;
+		},
+
+	};
+	return actions;
+}
+
 
 function getNum(i){
 	var last = YahrList.Yahrzeits.length - 1;
 	i++;
-	var dateHold = YahrList.Yahrzeits[i].HDate;
-
-	if(i > last - 1){
+	if(i > last){
 		i = 0;
 		resetSideBar();
 	}
-
+	var dateHold = YahrList.Yahrzeits[i].HDate;
 	if(TESTING_OFF)
 		while(dateHold.indexOf(currentMonth) < 0 && i < last){
 			i++;
@@ -220,21 +255,20 @@ function getNum(i){
 		}
 	}
 
-	if(i > last - 1) i = 0;
+	if(i > last) i = -1;
 	return i;
 }
 
 var lastI = -1;
 function loadElement(i, callback){
 	if(i < lastI){
-		var tf = TIME_FACTOR * 1000;
 		setTimeout(callback, 1500);
 		lastI = -1;
 		return;
 	} else {
 		lastI = i;
 	}
-	turnBack();
+	//turnBack();
 	positionElts();
 	var bd = document.getElementById("body");
 	var cName = "";
@@ -299,16 +333,27 @@ function loadElement(i, callback){
 		Pic02.src = "./img/" + YahrList.Yahrzeits[i].Pic02;
 	}
 
-	if(YahrList.Yahrzeits[i].PDF01.trim() == ""){
-			removeBodyListener();
-	} else {
-			addBodyListener();
+	var pdfP = null;
+	pdfP = new pdfPix(i);
+	if(YahrList.Yahrzeits[i].PDF01.trim() != ""){
+		//console.log("adding event to: " + YahrList.Yahrzeits[i].Name);
+		//pdfP.addEvent("pdf");
+		BodyListener.setFirstFunction(pdfP.getNextPDF);
+		BodyListener.addBodyListener("pdf");
+	}
+	else {
+		BodyListener.removeBodyListener("pdf");
+		//console.log("else");
+		//pdfP.removeEvent("pdf");
 	}
 
 	var Comments01 = document.getElementById("Comments01");
 	Comments01.innerHTML = YahrList.Yahrzeits[i].Comments01;
+	Comments01.style.display = 'none';
+	if(YahrList.Yahrzeits[i].Pic01.trim() != ""){
+		Comments01.style.display = 'inline';
+	}
 	Comments01.className = "Comments01" + YahrList.Yahrzeits[i].PayLevel;
-	//var top = getTopComment01High() > getBelowDate2() ? getTopComment01High() : getBelowDate2();
 	if(YahrList.Yahrzeits[i].Comments01.length > 411){
 		if(YahrList.Yahrzeits[i].Pic02.trim() == ""){
 			Comments01.style.top = getBelowDate2();
@@ -318,7 +363,7 @@ function loadElement(i, callback){
 		}
 	}
 
-		//currentName = i;
 	currentIDX = i;
-	setTimeout(loadSideBar, (TIME_FACTOR  * 1000) / 2);
+	//setTimeout(loadSideBar, (TIME_FACTOR  * 1000) / 2);
+	//timeControl.setSideTimer(loadSideBar);
 }

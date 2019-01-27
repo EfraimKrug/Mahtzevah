@@ -12,10 +12,52 @@
 <title>Beis Chayim</title>
 
 </head>
-<body  id=appBody onload="firstLoad();">
-<!-- <div id="pdfView" height="100%" width="100%"><img id="pdfImg" src="" onclick="turnBack();"></div> -->
-<div id="pdfView" height="100%" width="100%"><img id="pdfImg" src=""></div>
+<body  id=appBody onload="setupTimerLoad();">
+ <!-- <div id="pdfView" height="100%" width="100%"><img id="pdfImg" src="" onclick="turnBack();"></div> -->
 
+<script>
+function hideSalesCommnet(){
+  var salesComments = document.getElementById('salesComments');
+  salesComments.style.display = 'none';
+}
+
+function salesComment(divName){
+var bodyComment = "The background can be changed to any picture you would like. There are 5 possible background choices that change with pay-scale.";
+var titleComment = "The title can be anything you want. This is changed in the configuration.";
+var picComment = "The pictures can be added for the top three payscales."
+var nameComment = "I am using these fields as name fields - English or Hebrew ";
+var dateComment = "I am using these fields as date fields - English and Hebrew. The Hebrew date field is used to determine if this name should be displayed on the side with the yahrzeits for today. ";
+var sideComment = "The plaques themselves display copper, bronze, silver or gold depending on payscale. The yahrzeits for the current day are displayed on the side. For demonstration purposes, the side display stays on 17 Shevat. It works properly in real time.";
+var commentComment = "This comment is free form text - it can be pretty much anything you want.";
+
+var salesComments = document.getElementById('salesComments');
+salesComments.style.display = 'inline';
+
+  if(divName == 'body'){
+    salesComments.innerHTML = bodyComment;
+  }
+  if(divName == 'title'){
+    salesComments.innerHTML = titleComment;
+  }
+  if(divName == 'pic'){
+    salesComments.innerHTML = picComment;
+  }
+  if(divName == 'name'){
+    salesComments.innerHTML = nameComment;
+  }
+  if(divName == 'date'){
+    salesComments.innerHTML = dateComment;
+  }
+  if(divName == 'side'){
+    salesComments.innerHTML = sideComment;
+  }
+  if(divName == 'comment'){
+    salesComments.innerHTML = commentComment;
+  }
+}
+</script>
+<div id="pdfView" height="100%" width="100%"><img id="pdfImg" src=""></div>
+<div id=salesComments></div>
 <div id=body class=bg0>
 <div id=keyShow></div>
 <div id=security>
@@ -26,7 +68,7 @@
 									<tr><td class=kb onclick="kbclick('clear');"><=</td><td class=kb onclick="kbclick('0');">0</td><td class=kb onclick="kbclick('Enter');">Enter</td></tr>
 								</table>
 </div>
-<div id=spanTitle><h1 id=sTitle onclick="showSecurity();" _onclick="doSelect();">Beis Chayim</h1></span>
+<div id=spanTitle><h1 id=sTitle onclick="showSecurity();"  onmouseover="salesComment('title');" onmouseout="hideSalesCommnet();">Beis Chayim</h1></span>
 <table id=accessMenu>
 	<tr><td>
 </td>
@@ -42,26 +84,26 @@
 </tr>
 </table>
 <div id="wholeThing">
-	<div id=Name></div>
-	<div id=HName></div>
-	<div id=EDate></div>
-	<div id=HDate></div>
-	<div id=DPic01><img id=Pic01 src="./img/soldiers00x1.jpeg" alt=""></div>
-	<div id=DPic02><img id=Pic02 src="./img/elderly00x1.jpeg" alt=""></div>
-	<div id=Comments01></div>
+	<div id=Name  onmouseout="hideSalesCommnet();"  onmouseover="salesComment('name');" ></div>
+	<div id=HName  onmouseout="hideSalesCommnet();"  onmouseover="salesComment('name');" ></div>
+	<div id=EDate  onmouseout="hideSalesCommnet();"  onmouseover="salesComment('date');" ></div>
+	<div id=HDate  onmouseout="hideSalesCommnet();"  onmouseover="salesComment('date');" ></div>
+	<div id=DPic01><img id=Pic01 onmouseout="hideSalesCommnet();"  onmouseover="salesComment('body');" src="./img/soldiers00x1.jpeg" alt=""></div>
+	<div id=DPic02><img id=Pic02 onmouseout="hideSalesCommnet();"  onmouseover="salesComment('pic');" src="./img/elderly00x1.jpeg" alt=""></div>
+	<div id=Comments01  onmouseover="salesComment('comment');" onmouseout="hideSalesCommnet();"></div>
 	<!-- <div id=fbook><img id=gotofbook onclick="gotoFBook();" src="./img/facebook2.png" alt=""></div> -->
-	<div id=sbar01></div>
-	<div id=sbar02></div>
-	<div id=sbar03></div>
-	<div id=sbar04></div>
-	<div id=sbar05></div>
-	<div id=sbar06></div>
-	<div id=sbar07></div>
-	<div id=sbar08></div>
-	<div id=sbar09></div>
-	<div id=sbar010></div>
-	<div id=sbar011></div>
-	<div id=sbar012></div>
+	<div id=sbar01 onmouseover="salesComment('side');" onmouseout="hideSalesCommnet();"></div>
+	<div id=sbar02 onmouseover="salesComment('side');" onmouseout="hideSalesCommnet();"></div>
+	<div id=sbar03 onmouseover="salesComment('side');" onmouseout="hideSalesCommnet();"></div>
+	<div id=sbar04 onmouseover="salesComment('side');" onmouseout="hideSalesCommnet();"></div>
+	<div id=sbar05 onmouseover="salesComment('side');" onmouseout="hideSalesCommnet();"></div>
+	<div id=sbar06 onmouseover="salesComment('side');" onmouseout="hideSalesCommnet();"></div>
+	<div id=sbar07 onmouseover="salesComment('side');" onmouseout="hideSalesCommnet();"></div>
+	<div id=sbar08 onmouseover="salesComment('side');" onmouseout="hideSalesCommnet();"></div>
+	<div id=sbar09 onmouseover="salesComment('side');" onmouseout="hideSalesCommnet();"></div>
+	<div id=sbar010 onmouseover="salesComment('side');" onmouseout="hideSalesCommnet();"></div>
+	<div id=sbar011 onmouseover="salesComment('side');" onmouseout="hideSalesCommnet();"></div>
+	<div id=sbar012 onmouseover="salesComment('side');" onmouseout="hideSalesCommnet();"></div>
 	<div id=sbar013></div>
 	<div id=sbar014></div>
 	<div id=sbar015></div>
@@ -407,7 +449,7 @@ function kbclick(ky){
 
 	function goBack(oldPanel){
 		resetScreen(oldPanel);
-		addBodyListener();
+		//addBodyListener();
 	}
 
 	function resetScreen(oldPanel){
@@ -449,7 +491,7 @@ function kbclick(ky){
 
 	function loadEdit(queryDict){
 			var ID = queryDict["ID"];
-			removeBodyListener();
+			//removeBodyListener();
 			autoProcess = false;
 
 			document.getElementById("ID").innerHTML = ID;
@@ -573,7 +615,7 @@ function doNew(){
 }
 
 function loadNew(){
-		removeBodyListener();
+		//removeBodyListener();
 		autoProcess = false;
 		document.getElementById("ID").innerHTML = "";
 		document.getElementById("newName").value = "";
