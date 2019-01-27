@@ -1,0 +1,72 @@
+# install beisChayim
+# note - install python
+# note - install firefox - configure options->download->always ask
+#
+BRANCH_NAME=Screen10.1Touch1.1
+BRANCH_NAME_ZIP=Screen10.1Touch1.1.zip
+CODE_DIRECTORY=bcCode
+#
+cd $HOME/Downloads
+#
+echo "**********************************************************************************************************"
+echo "*            We are downloading the BeisChayim zip file...                                               *"
+echo "**********************************************************************************************************"
+#
+wget https://github.com/EfraimKrug/BeisChayim/archive/$BRANCH_NAME_ZIP
+[ -e $HOME/Downloads ] || echo "No Downloads folder: please create $HOME/Downloads"
+[ -e $HOME/Downloads/$BRANCH_NAME_ZIP ] || echo "No zip file! Please download BeisChayim-$BRANCH_NAME_ZIP (github/EfraimKrug)"
+[ -e $HOME/$CODE_DIRECTORY ] || mkdir $HOME/$CODE_DIRECTORY
+[ -e $HOME/$CODE_DIRECTORY/BeisChayim ] || mkdir $HOME/$CODE_DIRECTORY/BeisChayim
+mv $HOME/Downloads/$BRANCH_NAME_ZIP $HOME/$CODE_DIRECTORY/BeisChayim.zip
+cd $HOME/$CODE_DIRECTORY
+unzip $HOME/$CODE_DIRECTORY/BeisChayim.zip
+#
+rm $HOME/$CODE_DIRECTORY/BeisChayim.zip
+mv $HOME/$CODE_DIRECTORY/BeisChayim-$BRANCH_NAME/* $HOME/$CODE_DIRECTORY/BeisChayim
+rmdir $HOME/$CODE_DIRECTORY/BeisChayim-$BRANCH_NAME
+cp ~/$CODE_DIRECTORY/BeisChayim/ShellScripts/BChCycle01.sh ~/bin/BChCycle01
+cp $HOME/$CODE_DIRECTORY/BeisChayim/ShellScripts/ShellInstall.sh $HOME/bin/ShellInstall
+#
+mkdir $HOME/$CODE_DIRECTORY/BeisChayim/data
+mkdir $HOME/$CODE_DIRECTORY/BeisChayim/data/work
+mkdir $HOME/$CODE_DIRECTORY/BeisChayim/data/used
+mkdir $HOME/$CODE_DIRECTORY/BeisChayim/pdf
+#
+chmod 555 $HOME/bin/ShellInstall
+#
+#
+# check/install shell ShellScripts
+#
+[ -n "$(find $HOME/$CODE_DIRECTORY -name '.shellInstalled' | head -1)" ] || $HOME/bin/ShellInstall $CODE_DIRECTORY
+[ -n "$(find $HOME/$CODE_DIRECTORY -name '.shellInstalled' | head -1)" ] || echo shell_installed > $HOME/$CODE_DIRECTORY/.shellInstalled
+#
+#
+# check/install crontab
+#
+[ -n "$(find $HOME/$CODE_DIRECTORY -name '.cronInstalled' | head -1)" ] || $HOME/bin/editCrontab
+[ -n "$(find $HOME/$CODE_DIRECTORY -name '.cronInstalled' | head -1)" ] || echo cron_installed > $HOME/$CODE_DIRECTORY/.cronInstalled
+#
+#
+#
+echo "**********************************************************************************************************"
+echo "*            For Raspberri Pi, we need to install a screen saver (to turn off)                           *"
+echo "**********************************************************************************************************"
+#
+#sudo apt-get install xscreensaver
+#sudo apt-get install firefox-esr
+#sudo apt-get install matchbox-keyboard
+#sudo apt-get install unclutter
+#
+#
+echo "**********************************************************************************************************"
+echo "*   You need to create a 'yahrzeits.csv' file and put it in $HOME/$CODE_DIRECTORY/BeisChayim/data/yahrzeits.csv   *"
+echo "*   If you are using ShulCloud, you can download your yahrzeits file from there                          *"
+echo "*   otherwise, you will have to build it - (in excel)                                                    *"
+echo "**********************************************************************************************************"
+echo ""
+echo "**********************************************************************************************************"
+echo "*   That was step 1. Now, on to step 2:                                                                  *"
+echo "*   Now, make sure you have the yahrzeits.csv file in ~/Downloads, then run startUp                      *"
+echo "**********************************************************************************************************"
+#
+$HOME/bin/BChCycle01

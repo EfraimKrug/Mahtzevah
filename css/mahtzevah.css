@@ -30,7 +30,7 @@ body {
 
 #entries {
   float:left;
-  width: 72%;
+  width: 87%;
   height: 50%;
   font-size: 18px;
   color: black;
@@ -40,36 +40,36 @@ body {
 
 #entry1 {
   float: left;
-  width: 25%;
+  width: 28%;
   height: 80%;
   font-size: 18px;
   color: green;
   padding: 20px;
-  margin: 20px;
+  /*margin: 20px; */
   border: 4px outset black;
   background-color: beige;
 }
 
 #entry2 {
   float: left;
-  width: 25%;
+  width: 28%;
   height: 80%;
   font-size: 18px;
   color: green;
   padding: 20px;
-  margin: 20px;
+  margin-left: 20px;
   border: 4px outset black;
   background-color: beige;
 }
 
 #entry3 {
   float: left;
-  width: 25%;
+  width: 28%;
   height: 80%;
   font-size: 18px;
   color: green;
   padding: 20px;
-  margin: 20px;
+  margin-left: 20px;
   border: 4px outset black;
   background-color: beige;
 }
@@ -115,13 +115,12 @@ body {
   display: none;
 }
 
-#instructions1 {
+#instructions1,#instructions2,#instructions3,#instructions4 {
   position: absolute;
   font-size:0.9em;
   left: 0px;
   top: 65px;
-  height:100%;
-  width: 100%;
+  padding: 20px;
   background-image: url('../img/bgplaque.gif');
   z-index:10;
   display: none;
@@ -129,25 +128,15 @@ body {
 }
 
 #instructions2 {
-  position: absolute;
-  left: 0px;
-  top: 65px;
-  height:100%;
-  width: 100%;
-  background-image: url('../img/bgplaque.gif');
   z-index:11;
-  display: none;
 }
 
 #instructions3 {
-  position: absolute;
-  left: 0px;
-  top: 65px;
-  height:100%;
-  width: 100%;
-  background-image: url('../img/bgplaque.gif');
   z-index:12;
-  display: none;
+}
+
+#instructions4 {
+  z-index:13;
 }
 
 .listDiv{

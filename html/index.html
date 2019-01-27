@@ -49,7 +49,9 @@ look!</p>
   <div id=instructions1>
   <div class=listDiv>
   <ul style="list-style-type:disc">
-    <li>Hardware - buy this stuff!
+    <li><span class=listItem>Hardware - buy this stuff! These links take you to the sites you can buy on.
+    Personally, I use PayPal for pretty much everything.</span>
+    <hr>
       <ul style="list-style-type:square">
         <li><span class=listItem><a href="https://www.adafruit.com/product/3055"  target="_blank">Raspberry Pi (3 model B)</a> get the Heat Sink also.</span></li>
         <li><span class=listItem><a href="https://www.waveshare.com/10.1inch-HDMI-LCD.htm"  target="_blank">Touch Screen</a> This monitor is about 10 inches wide. You may want to shop for a larger monitor... but I would suggest trying it out with the small monitor first.</span></li>
@@ -65,17 +67,25 @@ look!</p>
         <li><span class=listItem><a href="https://www.amazon.com/VicTsing-Keyboard-Ultra-Thin-Computer-Desktop-Black/dp/B07DRG6ZVD/ref=sr_1_2_sspa?s=electronics&ie=UTF8&qid=1547746819&sr=1-2-spons&keywords=keyboard&psc=1"  target="_blank">Keyboard</a> - pretty much any keyboard with USB (if you have an old one, use it!)</span></li>
       </ul>
     </li>
-    <br><br>
-    <li>Put it together
+  </ul>
+  </div>
+  </div>
+
+
+  <div id=instructions2>
+  <div class=listDiv>
+    <ul style="list-style-type:disc">
+    <li><span class=listItem>Put it together. This part is simply getting everything to fit together, and then plugging stuff in.</span>
+      <hr>
       <ul style="list-style-type:square">
         <li><span class=listItem><a href="https://www.modmypi.com/blog/waveshare-101-screen-assembly-guide"  target="_blank">Here is a good guide</a> how to put the hardware together</span></li>
         <li><span class=listItem>The main thing to remember is this:
           <ul style="list-style-type:square">
-            <li><span class=listItem>You have to have 2 cords from the raspberry pi to the monitor</span></li>
-            <li><span class=listItem>You have to power the monitor</span></li>
-            <li><span class=listItem>You have to power the raspberry pi </span></li>
-            <li><span class=listItem>The rest is getting it to fit together nicely! and making it look good.</span></li>
-            <li><span class=listItem>The mouse and keyboard both plug into the raspberry pi</span></li>
+            <li><span class=listItem>You have to have 2 cords from the raspberry pi to the monitor. One cord is the screen itself. The other cord is the touch screen function.</span></li>
+            <li><span class=listItem>You have to power the monitor (plug it it!)</span></li>
+            <li><span class=listItem>You have to power the raspberry pi (plug it in!)</span></li>
+            <li><span class=listItem>The rest is getting it to fit together nicely! and making it look good. This is artsy, construction or carpentry. Or nothing.</span></li>
+            <li><span class=listItem>The mouse and keyboard both plug into the raspberry pi usb ports.</span></li>
           </ul>
       </ul>
     </li>
@@ -89,21 +99,20 @@ look!</p>
 
 
 <!-- second page of instructions -->
-<div id=instructions2>
-<p><br><br></p>
+<div id=instructions3>
 <div class=listDiv>
 <ul style="list-style-type:disc">
-  <li>Software - download this to a Windows computer!
+  <li><span class=listItem>Software - download this to a Windows computer! This is all done on another computer - NOT the Raspberri Pi. You are going to copy a bunch of stuff to an Micro SD card, then plug that card into one of Raspberry Pi usb ports. Once the Micro SD Card is in, you plug in the power to the Raspberry Pi AND you plug in the power to the monitor.</span>
+    <hr>
     <ul style="list-style-type:square">
       <li><span class=listItem><a href="https://www.raspberrypi.org/downloads/raspbian/"  target="_blank">Download the operating
-        system</a> The zip file - to a windows machine: Raspbian Stretch with desktop and recommended software</span></li>
+        system</a> The zip file - to a windows machine: "Raspbian Stretch with desktop and recommended software"</span></li>
     </ul>
   </li>
   <li><span class=listItem>Format your SD Card!</span>
     <ul style="list-style-type:square">
       <li><span class=listItem>Put the card in the reader</span></li>
       <li><span class=listItem>Plug the reader into a USB port on your windows computer</span></li>
-      <li><span class=listItem>Put the card in the reader</span></li>
       <li><span class=listItem>Open the file explorer</span></li>
       <li><span class=listItem>Click on "Computer"</span></li>
       <li><span class=listItem>Find the removeable disk that is pointing to your SD Card, Right click on it, and choose 'Format'</span></li>
@@ -116,19 +125,18 @@ look!</p>
         <li><span class=listItem>Browse, find 'COMPUTER' and click on your SD Card</span></li>
         <li><span class=listItem>Wait until it is complete.</span></li>
         <li><span class=listItem>Take the SD Card and Reader out of the Windows Computer, and put them into one of the USB slots in your Raspberry Pi</span></li>
-        <li><span class=listItem>Plug it in and follow instructions!</span></li>
+        <li><span class=listItem>Plug it in and follow instructions! These instructions will end in rebooting your pi. At this point, it should boot up properly and you have a fully functional Raspberri Pi. Congratulations! Cool! Awesome. You can hoot and hollar (and dance)!</span></li>
       </ul>
   </li>
 </ul>
 <br><br>
 </div>
-</li>
+</  
 </ul>
 </div>
 
 <!-- third page of instructions -->
-<div id=instructions3>
-<p><br><br></p>
+<div id=instructions4>
 <div class=listDiv>
 <ul style="list-style-type:disc">
   <li><span class=listItem>Open up your PI and signon</span></li>
@@ -202,7 +210,7 @@ var bgpointer = 1;
 var currentPage = 1;
 
 function getNext(){
-  if(currentPage < 3) currentPage++;
+  if(currentPage < 4) currentPage++;
   return currentPage;
 }
 
