@@ -22,11 +22,19 @@ if everything goes wrong a few times!)</p>
 <p>You will also have to make choices regarding installation.
 For this, you may want to hire a carpenter or general contractor.
 In the Boston area, I have people I work with. </p>
-<p>I pride myself on clear instructions. Please take a
-look!</p>
+<p>Please take a look!</p>
 </div>
-<div id=entry2 onclick=getEntry2();>
-  Entry #2
+<div id=entryX>
+  <div id=iPage01 onclick='closePages();'></div>
+  <div id=iPage02 onclick='closePages();'></div>
+  <div id=iPage03 onclick='closePages();'></div>
+  <div class=entryBox onclick="getPage(1);">Who are we?</div>
+  <div class=entryBox onclick="getPage(2);">Why is this so simple?</div>
+  <div class=entryBox onclick="getPage(3);">FAQs</div>
+  <div class=entryBox onclick="getPage(4);">Requirements</div>
+</div>
+<div id=entry2 onclick="getPageThru();">
+  <div id=iPage04 onclick='closePages();'></div>
 </div>
 <div id=entry3 onclick=getEntry3();>
 <p>There is an electronic board called a Rasperry Pi. This will be
@@ -44,6 +52,7 @@ look!</p>
 </div>
 </div>
   <div id=container>
+
   <div id=navButtons><div id=backButton  onclick=goBack();>Back</div><div id=forwardButton  onclick=goForward();>Next</div></div>
   <!-- first page of instructions -->
   <div id=instructions1>
@@ -131,7 +140,7 @@ look!</p>
 </ul>
 <br><br>
 </div>
-</  
+</
 </ul>
 </div>
 
@@ -202,6 +211,96 @@ look!</p>
 </body>
 </html>
 <script>
+function getPage(page){
+  var page01 = "<h3>Who am I?</h3><p>I am planning on making Aliyah, and I need a way to make a little bit of a living. To that end, I have a few possibilities - and this is one of them. If you set this up, and you make money from it - I hope you will come back and share a bit with me!</p>";
+  var page02 = "<h3>What do you need for a system like this?</h3><p>I have been working in IT and software since 1988. Now, there is a tendency to build software by throwing everything at it - first you assemble the pieces - then you determine what you need. <i>That's weird!</i></p>" +
+                "<h4>Networking and Security?</h4><p>Networking is good for communication. In this application, almost all communication is not in real time. That means we do not have to network, we do not have to introduce security risks. That being said, we are allowing the admin to send update information via email. This is both exciting and cool!</p>" +
+                "<h4>Remember!</h4><p>The only technology that <i>never</i> breaks - is one you do not use! With this application I 100% guarantee you will NEVER have database problems. You will NEVER have networking problems. You will NEVER have compiler problems. You will NEVER have framework problems.</p>" +
+                "<h4>Is there any technology we do rely on?</h4><p>Yes! We rely on the browser, and the browser's ability to run JavaScript. If you use FireFox you have 170 million other people who will share your problems. That's a whole lot of reliability!</p>" +
+                "<h4>We rely on JavaScript!</h4><p>I love JavaScript. What can I say?</p>" +
+                "<h4>We rely on Linux!</h4><p>There are over 2.5 Billion devices in the world running on Linux. That's a lot of reliability!</p>" +
+                "<h4>Can I change the code?</h4><p>Yup! If you don't like the way something works, you (or a highschool student you know) can read and change the code.</p>" +
+                "<h4>No Database??</h3><p>A database is used if you have lots of updates happening really fast. If I wanted to keep track of how much food a person eats - I would use a database. All the more so if I wanted to keep track of how much food 10 people eat! People keep logging their food - every meal - every time something changes... But the truth is, the Neshamas listed in this application - from our earthly perspective - don't really move so much! </p>";
+  var page03 = "<h3>Questions - which we believe could be asked frequently</h3><p></p>" +
+                "<h4>What does the display look like?</h4><p>There are four possible displays. 1) Displaying one person at a time forever. 2) Displaying pages of memorial plaques. 3) Switching between those two: first displaying everyone - one person at a time, then displaying everyone as pages of memorial plaques. 4) The same as 3 above, but showing one person, then listing plaques, then showing the next person, then listing plaques.</p>" +
+                "<h4>Are there different looks reflecting different payment amounts?</h4><p>Yes. The memorial plaques have 4 possible backgrounds - copper, bronze, silver and gold - depending on a payment field. The backgrounds for the individual displays are also determined by payscale. Finally, silver and gold levels allow the entry to post pictures in the individual displays.</p>" +
+                "<h4>Do yahrzeits for today show up anywhere?</h4><p>Yes. While the individual display is running, a series of plaques are listed along the right side reflecting today's yahrzeits.</p>" +
+                "<h4>Does that work with a touch screen?</h4><p>Yup.</p>" +
+                "<h4>What is 'interactive' about this?</h4><p>View mode: If an individual is being displayed and someone clicks on the screen - the person viewing is shown a series of pictures (or documents, or whatever you like).<br>Edit mode: allows a user to enter a series of screens and update entries, or create new entries.<br>Shabbos mode: none of the touch functions work at all.</p>" +
+                "<h4>How do you initially load the data into the application?</h4><p>We suggest using an CSV file (from excel, or libre office).</p>" +
+                "<h4>What if you have a periodic source for new entries?</h4><p>Great! Any chaanges you make will be funneled into the new list of entries!</p>" +
+                "<h4>No offense, but I don't like your choice of backgrounds</h4><p>Choose your own backgrounds! copy them in, and that's that!</p>";
+   var page04 = "<h3>Requirements</h3><p>Also, please take a look at 'Build it yourself'</p>" +
+                "<h4>Raspberry Pi</h4>" +
+                "<p>" +
+                "<p style='float:left;width:50%'>This is a small circuit board - about 3 inches by 4 inches, that does all the computer functionality. It will cost you a little less than $40. For your convenience, get a '3 model B'.</p>" +
+                "<img src='../img/rasppi.jpeg' style='float:right'/></p><p style='float:left;width:97%'>The silver box things on the top, right edge (in the picture) are USB ports.</p>" +
+                "<p style='float:left;width:97%'>Please notice that there are three plugs along the lower right side that we will be using.</p>";
+
+  if(page == 1){
+    document.getElementById("iPage02").style.display = 'none';
+    document.getElementById("iPage03").style.display = 'none';
+    document.getElementById("iPage04").style.display = 'none';
+    var iPage = document.getElementById("iPage01");
+    iPage.innerHTML = page01;
+    iPage.style.display = 'inline';
+    return;
+  }
+  if(page == 2){
+    document.getElementById("iPage01").style.display = 'none';
+    document.getElementById("iPage03").style.display = 'none';
+    document.getElementById("iPage04").style.display = 'none';
+    var iPage = document.getElementById("iPage02");
+    iPage.innerHTML = page02;
+    iPage.style.display = 'inline';
+    return;
+  }
+  if(page == 3){
+    document.getElementById("iPage01").style.display = 'none';
+    document.getElementById("iPage02").style.display = 'none';
+    document.getElementById("iPage04").style.display = 'none';
+    var iPage = document.getElementById("iPage03");
+    iPage.innerHTML = page03;
+    iPage.style.display = 'inline';
+    return;
+  }
+  if(page == 4){
+    document.getElementById("iPage01").style.display = 'none';
+    document.getElementById("iPage02").style.display = 'none';
+    document.getElementById("iPage03").style.display = 'none';
+    document.getElementById("entryX").style.display = 'none';
+    document.getElementById("entry2").style.display = 'inline';
+    var iPage = document.getElementById("iPage04");
+    iPage.innerHTML = page04;
+    iPage.style.display = 'inline';
+    return;
+  }
+  //alert("Getting page: " + page);
+}
+
+var ptPage = 1;
+function getPageThru(){
+      if(ptPage > 6){
+        document.getElementById("entryX").style.display = 'inline';
+        document.getElementById("entry2").style.display = 'none';
+        ptPage = 1;
+        return;
+      }
+
+      var page01 = "<h4>SD Micro Card</h4><p><p style='float:left;width:50%'>This is a small card (smaller than an inch) that holds a hold lot of memory (32 gig? wow!).</p><img src='../img/microSD.jpg' style='float:right;width:40%'/><p style='float:left;width:97%'>It's smaller than a USB port! So you need something the size of a USB port that will hold the card, and then plug the holder AND the card together into the computer (USB port).</p></p>";
+      var page02 = "<h4>SD Micro Card Reader</h4><p><p style='float:left;width:50%'>This is the holder that is about the size of a USB port, and you can snap the SD Micro Card into it.</p><img src='../img/microSDHolder.jpg' style='float:right;width:40%'/><p style='float:left;width:97%'>Now remember - this has to be able to read AND write data. Just be careful that you are buying the right thing. I have never seen one that can ONLY read, or ONLY write... but I have no reason to look for one either!</p><p  style='float:left;width:97%'>This little box has a case and a string. The string - is like a key chain - so you won't lose it. The case pulls off when you are going to use it.</p></p>";
+      var page03 = "<h4>Monitor</h4><p><p style='float:left;width:50%'>The monitor is really whatever you like. There are some caveats, however. First - if you want a touch screen, make sure it IS a touch screen.</p><img src='../img/monitor.png' style='float:right;width:40%'/><p style='float:left;width:97%'>Touch screens are a lot more expensive then regular monitors. If you don't want the touch screen - that is fine but (obviously) you do not get the interactive functionality (unless you plug in a mouse? That could be interesting...but weird!)</p><p style='float:left;width:97%'>The second caveat is that you must make sure it is compatible with a Raspberry Pi. The manufacturer will say if it is or not. If you already have one - try it before deciding it is not compatible!</p></p>";
+      var page04 = "<h4>Cords - two power and two others</h4><p><p style='float:left;width:50%'>The power cords look (and may be) like your phone recharging cords - with the black box that plugs into the wall.</p><img src='' style='float:right;width:40%'/><p style='float:left;width:97%'> You need one for the Raspberry Pi, and one for the monitor. The monitor <i>probably</i> comes with one.</p></p>";
+      var page05 = "<h4>Cords - ... and two others</h4><p><p style='float:left;width:50%'>The first cord is called a USB to Micro USB... it is easier to deal with more cord then less, so I would suggest getting about 1 meter in length.</p><img src='../img/USB2MicroUSB.jpg' style='float:right;width:40%'/><p style='float:left;width:97%'>This cord will go from one of the USB ports on the Rasperry Pi to the micro USB port on the monitor. Is is going to be responsible for transmitting touch signals from the monitor to the Rasperry Pi.</p></p>";
+      var page06 = "<h4>Cords - and the second...</h4><p><p style='float:left;width:50%'> is called an HDMI cable (both ends are the same). Again, it is easier to deal with more cord then less, so I would suggest getting about 1 meter in length.</p><img src='../img/HDMICable.jpg' style='float:right;width:40%'/><p style='float:left;width:97%'>This cord will transmit all the normal screen signals - everything will work with this cord alone (except the touch functionality).</p><p style='float:left;width:97%'>Also notice, the ends on this cord are about as wide as my thumbs - i.e. wider than a USB.</p></p>";
+
+      var iPage = document.getElementById("iPage04");
+      iPage.innerHTML = eval("page0" + ptPage);
+      ptPage++;
+}
+
+</script>
+<script>
 var TitleInterval = "";
 var title = ["Interactive", "Memorial", "Plaque", "Display"];
 var bgColl = ["bgbronze.jpg","bgcopper.jpg","bgsilver.jpg","bggold.jpg","bgplaque.jpg"];
@@ -209,13 +308,32 @@ var pointer = 0;
 var bgpointer = 1;
 var currentPage = 1;
 
+function closePages(){
+  for(var i=1; i<4; i++){
+    page = document.getElementById("iPage0" + i);
+    page.style.display = 'none';
+  }
+
+}
 function getNext(){
-  if(currentPage < 4) currentPage++;
+  if(currentPage < 4){
+    currentPage++;
+    return currentPage;
+  }
+  container = document.getElementById("container");
+  container.style.display = 'none';
+  currentPage = 1;
   return currentPage;
 }
 
 function getPrevious(){
-  if(currentPage > 1) currentPage--;
+  if(currentPage > 1){
+    currentPage--;
+    return currentPage;
+  }
+  container = document.getElementById("container");
+  container.style.display = 'none';
+  currentPage = 1;
   return currentPage;
 }
 
